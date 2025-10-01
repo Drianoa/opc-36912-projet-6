@@ -1,0 +1,13 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mdd
+    ports:
+      - "3306:3306"
+    # load scripts on container start
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
