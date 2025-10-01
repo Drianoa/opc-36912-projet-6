@@ -1,0 +1,44 @@
+package com.openclassrooms.mddapi.model;
+
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    @ManyToMany
+    @JoinTable(name = "subscriptions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "topic_id"))
+    private Set<Topic> topics = new LinkedHashSet<>();
+
+}
