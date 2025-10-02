@@ -21,5 +21,4 @@ public class Topic {
 
     @Column(name = "description", length = 2000)
     private String description;
-
 }

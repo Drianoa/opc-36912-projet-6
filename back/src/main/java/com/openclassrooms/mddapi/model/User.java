@@ -1,13 +1,12 @@
 package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -36,9 +35,9 @@ public class User {
     private Instant updatedAt;
 
     @ManyToMany
-    @JoinTable(name = "subscriptions",
+    @JoinTable(
+            name = "subscriptions",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "topic_id"))
     private Set<Topic> topics = new LinkedHashSet<>();
-
 }

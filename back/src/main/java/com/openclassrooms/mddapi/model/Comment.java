@@ -1,11 +1,10 @@
 package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
+import java.time.Instant;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -34,5 +33,4 @@ public class Comment {
 
     @Column(name = "updated_at")
     private Instant updatedAt;
-
 }

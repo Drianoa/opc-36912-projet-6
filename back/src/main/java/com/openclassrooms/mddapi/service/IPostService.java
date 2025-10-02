@@ -1,5 +1,3 @@
 package com.openclassrooms.mddapi.service;
 
-public interface IPostService {
-
-}
+public interface IPostService {}
