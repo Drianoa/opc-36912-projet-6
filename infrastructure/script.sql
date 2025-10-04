@@ -54,3 +54,8 @@ ALTER TABLE `comments` ADD FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
 
 ALTER TABLE `subscriptions` ADD FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`);
 ALTER TABLE `subscriptions` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+INSERT INTO topics (name, description) VALUES ('Java', 'Java est un langage orienté objet, portable grâce à la JVM, sécurisé, robuste et largement utilisé pour les applications web, mobiles, entreprises et systèmes embarqués.');
+INSERT INTO topics (name, description) VALUES ('Javascript', 'JavaScript est un langage de programmation web dynamique, léger, interprété par les navigateurs, permettant d’ajouter interactivité, animations et fonctionnalités côté client.');
+INSERT INTO topics (name, description) VALUES ('Angular', 'Angular est un framework JavaScript open-source, maintenu par Google, permettant de créer des applications web modernes, dynamiques, modulaires et performantes.');
+
