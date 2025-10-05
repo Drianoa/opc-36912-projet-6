@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.security;
 
-import com.openclassrooms.mddapi.repository.UserRepository;
+import com.openclassrooms.mddapi.features.auth.UserRepository;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
