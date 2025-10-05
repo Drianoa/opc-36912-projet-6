@@ -12,7 +12,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  start() {
-    alert('Commencez par lire le README et à vous de jouer !');
+  subscribe() {
+    alert('Inscrivez-vous pour accéder aux fonctionnalités avancées !');
+  }
+
+  login() {
+    alert('Connectez-vous pour continuer !');
   }
 }

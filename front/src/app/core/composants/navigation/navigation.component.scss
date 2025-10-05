@@ -1,0 +1,50 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.disconnect {
+  color: #A40F0F;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.active {
+  color: #6C5CCF !important;
+}
+
+.right-header-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0;
+  margin-left: auto;
+
+  & > .link {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.logo {
+  height: 65px;
+  margin-right: 16px;
+}
+
+.nav-button {
+  margin-left: auto;
+}
