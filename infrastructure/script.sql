@@ -61,3 +61,14 @@ INSERT INTO topics (name, description) VALUES ('Angular', 'Angular est un framew
 INSERT INTO topics (name, description) VALUES ('React', 'React est une bibliothèque JavaScript open-source, développée par Facebook, utilisée pour construire des interfaces utilisateur interactives et réactives, en se basant sur des composants réutilisables et un DOM virtuel.');
 
 INSERT INTO users (email, username, password, created_at, updated_at) VALUES ('a@a.a', 'user1', '{noop}password', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (email, username, password, created_at, updated_at) VALUES ('b@b.b', 'user2', '{noop}password', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO subscriptions (user_id, topic_id) VALUES (1, 1);
+INSERT INTO subscriptions (user_id, topic_id) VALUES (1, 4);
+INSERT INTO subscriptions (user_id, topic_id) VALUES (2, 4);
+
+
+INSERT INTO posts (title, topic_id, content, owner_id, created_at, updated_at) VALUES ('Introduction à Java', 1, 'Java est un langage de programmation orienté objet, portable et sécurisé, largement utilisé pour les applications web, mobiles et d\'entreprise.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO posts (title, topic_id, content, owner_id, created_at, updated_at) VALUES ('Les bases de JavaScript', 2, 'JavaScript est un langage de programmation léger et dynamique, principalement utilisé pour le développement web côté client, permettant d\'ajouter de l\'interactivité aux pages web.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO posts (title, topic_id, content, owner_id, created_at, updated_at) VALUES ('Créer des applications avec spring boot', 1, 'Spring Boot est un framework Java open-source qui facilite la création d\'applications autonomes et prêtes pour la production, en simplifiant la configuration et le déploiement.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO posts (title, topic_id, content, owner_id, created_at, updated_at) VALUES ('Les composants en React', 4, 'React est une bibliothèque JavaScript développée par Facebook, utilisée pour construire des interfaces utilisateur interactives et réactives, en se basant sur des composants réutilisables.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
