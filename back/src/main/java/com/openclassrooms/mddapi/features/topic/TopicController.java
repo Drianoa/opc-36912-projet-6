@@ -1,13 +1,14 @@
 package com.openclassrooms.mddapi.features.topic;
 
-import com.openclassrooms.mddapi.model.Topic;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/topic")
+@RequestMapping("/topics")
+@SecurityRequirement(name = "bearerAuth")
 public class TopicController {
 
     private final ITopicService topicService;
@@ -17,12 +18,12 @@ public class TopicController {
     }
 
     @GetMapping
-    public List<Topic> getTopics() {
-        return topicService.getTopics();
+    public List<UserSubscribedTopicDto> getTopics() {
+        return topicService.getTopicsWithSubscriptionStatus();
     }
 
-    @GetMapping("/user")
-    public List<UserTopicDto> getTopicsWithSubscriptionStatus() {
-        return topicService.getTopicsWithSubscriptionStatus();
+    @GetMapping("/subscribed")
+    public List<UserTopicDto> getSubscribedTopics() {
+        return topicService.getSubscribedTopics();
     }
 }

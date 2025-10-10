@@ -6,6 +6,4 @@ public interface UserTopicDto {
     String getName();
 
     String getDescription();
-
-    boolean isSubscribed();
 }

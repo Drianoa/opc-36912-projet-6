@@ -7,5 +7,7 @@ public interface ITopicService {
 
     List<Topic> getTopics();
 
-    List<UserTopicDto> getTopicsWithSubscriptionStatus();
+    List<UserSubscribedTopicDto> getTopicsWithSubscriptionStatus();
+
+    List<UserTopicDto> getSubscribedTopics();
 }
