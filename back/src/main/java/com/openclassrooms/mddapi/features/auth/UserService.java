@@ -4,15 +4,15 @@ import com.openclassrooms.mddapi.features.auth.dto.RegisterDto;
 import com.openclassrooms.mddapi.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import java.security.Principal;
-import java.util.Optional;
 
 /**
  * Service class for handling user-related operations including registration, authentication, and user management.
@@ -25,7 +25,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
-
 
     /**
      * Finds a user by their email address.
@@ -56,12 +55,16 @@ public class UserService {
      * @throws RuntimeException if a user with the given email already exists
      */
     public User register(@Valid RegisterDto registerDto) {
-        userRepository.findUserByEmail(registerDto.email()).ifPresent(u -> {
-            throw new RuntimeException("User already exists: " + registerDto.email());
+
+        var logins = List.of(registerDto.email(), registerDto.username());
+
+        userRepository.findUserByUsernameIsInOrEmailIsIn(logins, logins).ifPresent(u -> {
+            throw new RuntimeException("User already exists: " + String.join(",", logins));
         });
+
         var userEntity = new User();
         userEntity.setEmail(registerDto.email());
-        userEntity.setName(registerDto.name());
+        userEntity.setUsername(registerDto.username());
         userEntity.setPassword(encoder.encode(registerDto.password()));
 
         return userRepository.save(userEntity);
@@ -78,5 +81,4 @@ public class UserService {
         return findByEmail(principal.getName())
                 .orElseThrow(() -> new CredentialsExpiredException("User not found: " + principal.getName()));
     }
-
 }

@@ -6,5 +6,4 @@ import org.mapstruct.Mapper;
 import org.springframework.core.convert.converter.Converter;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper extends Converter<User, UserResponseDto> {
-}
+public interface UserMapper extends Converter<User, UserResponseDto> {}

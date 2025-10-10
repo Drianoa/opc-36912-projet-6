@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.features.auth.mapper;
 
-
 import com.openclassrooms.mddapi.features.auth.dto.RegisterDto;
 import com.openclassrooms.mddapi.model.User;
 import org.mapstruct.Mapper;

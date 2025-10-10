@@ -16,13 +16,15 @@ public class AuthenticationService {
     /**
      * Authenticates a user with the provided email and password.
      *
-     * @param email    the email of the user
+     * @param login    the email or username of the user
      * @param password the password of the user not encoded
      * @return the JWT token generated for the user
      */
-    public String authenticate(String email, String password) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password);
+    public String authenticate(String login, String password) {
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login, password);
+
         Authentication auth = authenticationManager.authenticate(token);
+
         return tokenService.generateToken(auth);
     }
 }

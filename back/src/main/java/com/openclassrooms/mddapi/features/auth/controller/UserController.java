@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.features.auth.controller;
 
-
 import com.openclassrooms.mddapi.features.auth.UserService;
 import com.openclassrooms.mddapi.features.auth.dto.UserResponseDto;
 import com.openclassrooms.mddapi.model.User;
@@ -24,7 +23,6 @@ public class UserController {
 
     private final UserService userService;
     private final ConversionService conversionService;
-
 
     /**
      * Fetches a user by its id.

@@ -2,7 +2,7 @@ CREATE TABLE `users`
 (
     `id`         integer PRIMARY KEY AUTO_INCREMENT,
     `email`      varchar(255) NOT NULL,
-    `name`       varchar(255) NOT NULL,
+    `username`   varchar(255) NOT NULL,
     `password`   varchar(255) NOT NULL,
     `created_at` timestamp,
     `updated_at` timestamp
@@ -58,4 +58,6 @@ ALTER TABLE `subscriptions` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`
 INSERT INTO topics (name, description) VALUES ('Java', 'Java est un langage orienté objet, portable grâce à la JVM, sécurisé, robuste et largement utilisé pour les applications web, mobiles, entreprises et systèmes embarqués.');
 INSERT INTO topics (name, description) VALUES ('Javascript', 'JavaScript est un langage de programmation web dynamique, léger, interprété par les navigateurs, permettant d’ajouter interactivité, animations et fonctionnalités côté client.');
 INSERT INTO topics (name, description) VALUES ('Angular', 'Angular est un framework JavaScript open-source, maintenu par Google, permettant de créer des applications web modernes, dynamiques, modulaires et performantes.');
+INSERT INTO topics (name, description) VALUES ('React', 'React est une bibliothèque JavaScript open-source, développée par Facebook, utilisée pour construire des interfaces utilisateur interactives et réactives, en se basant sur des composants réutilisables et un DOM virtuel.');
 
+INSERT INTO users (email, username, password, created_at, updated_at) VALUES ('a@a.a', 'user1', '{noop}password', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
