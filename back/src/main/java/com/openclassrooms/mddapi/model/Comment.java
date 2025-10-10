@@ -2,15 +2,17 @@ package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "comments")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
