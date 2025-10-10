@@ -41,8 +41,8 @@ public class SpringSecurityConfig {
                         .permitAll()
                         .requestMatchers("/v3/api-docs/**")
                         .permitAll()
-                        .requestMatchers("/**")
-                        .permitAll()
+                        //                        .requestMatchers("/**")
+                        //                        .permitAll()
                         .anyRequest()
                         .authenticated())
                 .build();
