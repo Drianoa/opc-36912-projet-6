@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TopicRepository extends JpaRepository<Topic, Long> {
+public interface TopicRepository extends JpaRepository<Topic, Integer> {
 
     @Query(
             """

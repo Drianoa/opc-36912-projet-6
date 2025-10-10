@@ -4,7 +4,6 @@ import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.features.post.PostRepository;
 import com.openclassrooms.mddapi.model.Comment;
 import com.openclassrooms.mddapi.model.User;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-@SecurityRequirement(name = "bearerAuth")
 public class CommentService {
     public final CommentRepository commentRepository;
     public final PostRepository postRepository;

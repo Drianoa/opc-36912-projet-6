@@ -1,12 +1,13 @@
 package com.openclassrooms.mddapi.features.post;
 
+import com.openclassrooms.mddapi.dtos.MessageResponseDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Log4j2
 @RestController
@@ -18,7 +19,14 @@ public class PostController {
     private final IPostService postService;
 
     @GetMapping
-    Iterable<PostResponseDto> getPostsForCurrentUser() {
+    public Iterable<PostResponseDto> getPostsForCurrentUser() {
         return postService.getPostsForCurrentUser();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDto createPost(@Valid @RequestBody PostRequestDto postRequest) {
+        postService.createPost(postRequest);
+        return new MessageResponseDto("Post created");
     }
 }
