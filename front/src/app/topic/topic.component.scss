@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+   .themes {
+     @include mat.card-overrides((
+       outlined-container-color: #F5F5F5,
+       outlined-outline-color: #F5F5F5,
+     ));
+   }
