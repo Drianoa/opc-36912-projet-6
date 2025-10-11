@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import java.time.Instant;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -27,6 +28,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @CreatedBy
     private User user;
 
     @Column(name = "message", nullable = false, length = 2000)

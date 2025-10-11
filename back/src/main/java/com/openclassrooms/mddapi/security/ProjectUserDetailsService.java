@@ -1,8 +1,6 @@
 package com.openclassrooms.mddapi.security;
 
 import com.openclassrooms.mddapi.features.auth.UserRepository;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +27,10 @@ public class ProjectUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userRepository
                 .findUserByEmailOrUsername(login, login)
-                .map(user -> new User(user.getEmail(), user.getPassword(), AuthorityUtils.NO_AUTHORITIES))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + login));
+    }
+
+    public UserDetails loadUserByUserId(Integer id) {
+        return userRepository.getReferenceById(id);
     }
 }

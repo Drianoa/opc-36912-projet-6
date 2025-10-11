@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.features.topic.dto;
 
 public interface UserTopicDto {
-    Long getId();
+    Integer getId();
 
     String getName();
 

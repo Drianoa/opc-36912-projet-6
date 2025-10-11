@@ -7,7 +7,6 @@ import com.openclassrooms.mddapi.features.post.dto.SortDirection;
 import com.openclassrooms.mddapi.features.topic.TopicRepository;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;
-import com.openclassrooms.mddapi.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,23 +35,15 @@ public class PostService implements IPostService {
     @Override
     @Transactional
     public Post createPost(PostRequestDto postRequest) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        // Récupérer l'utilisateur actuel
-        User currentUser =
-                userRepository.findUserByEmail(email).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
         // Récupérer le thème
-        Topic topic = topicRepository
-                .findById(postRequest.topicId())
-                .orElseThrow(() -> new RuntimeException("Thème non trouvé"));
+        Topic topic = topicRepository.getReferenceById(postRequest.topicId());
 
         // Créer le post
         var post = Post.builder()
                 .title(postRequest.title())
                 .content(postRequest.content())
                 .topic(topic)
-                .owner(currentUser)
                 .build();
 
         return postRepository.save(post);

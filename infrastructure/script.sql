@@ -20,7 +20,7 @@ CREATE TABLE `comments`
 (
     `id`         integer PRIMARY KEY AUTO_INCREMENT,
     `post_id`    integer NOT NULL,
-    `user_id`    integer,
+    `user_id`    integer NOT NULL,
     `message`    varchar(2000) NOT NULL ,
     `created_at` timestamp NOT NULL
 );
@@ -34,8 +34,8 @@ CREATE TABLE `topics`
 
 CREATE TABLE `subscriptions`
 (
-    `user_id`       integer,
-    `topic_id`      integer,
+    `user_id`       integer NOT NULL,
+    `topic_id`      integer NOT NULL,
     PRIMARY KEY (user_id, topic_id)
 );
 

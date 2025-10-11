@@ -4,14 +4,12 @@ import com.openclassrooms.mddapi.features.auth.dto.RegisterDto;
 import com.openclassrooms.mddapi.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.CredentialsExpiredException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -54,6 +52,7 @@ public class UserService {
      * @return the newly created user entity
      * @throws RuntimeException if a user with the given email already exists
      */
+    @Transactional
     public User register(@Valid RegisterDto registerDto) {
 
         var logins = List.of(registerDto.email(), registerDto.username());
@@ -68,17 +67,5 @@ public class UserService {
         userEntity.setPassword(encoder.encode(registerDto.password()));
 
         return userRepository.save(userEntity);
-    }
-
-    /**
-     * Retrieves the currently authenticated user.
-     *
-     * @return the authenticated user entity
-     * @throws CredentialsExpiredException if the current user cannot be found in the database
-     */
-    public User currentUser() {
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return findByEmail(principal.getName())
-                .orElseThrow(() -> new CredentialsExpiredException("User not found: " + principal.getName()));
     }
 }

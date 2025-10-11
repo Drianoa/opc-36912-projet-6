@@ -1,37 +1,34 @@
 package com.openclassrooms.mddapi.features.comment;
 
 import com.openclassrooms.mddapi.features.auth.UserRepository;
+import com.openclassrooms.mddapi.features.auth.UserService;
 import com.openclassrooms.mddapi.features.comment.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.features.post.PostRepository;
 import com.openclassrooms.mddapi.model.Comment;
-import com.openclassrooms.mddapi.model.User;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class CommentService {
-    public final CommentRepository commentRepository;
-    public final PostRepository postRepository;
-    public final UserRepository userRepository;
+    private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
     public List<CommentResponseDto> getCommentsForPost(Integer postId) {
         return commentRepository.findByPost_IdOrderByCreatedAtAsc(postId);
     }
 
+    @Transactional
     public Comment addComment(Integer postId, @Valid CommentRequestDto commentRequestDto) {
-
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        var currentUser = userRepository.findUserByEmail(email);
-        User user = currentUser.orElseThrow(() -> new RuntimeException("Error: User not found."));
-
+        // Récupérer l'ID utilisateur directement du token JWT
         var newComment = Comment.builder()
                 .post(postRepository.getReferenceById(postId))
                 .message(commentRequestDto.message())
-                .user(userRepository.getReferenceById(user.getId()))
                 .build();
 
         return commentRepository.save(newComment);

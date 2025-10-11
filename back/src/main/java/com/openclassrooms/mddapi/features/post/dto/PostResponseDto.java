@@ -3,7 +3,7 @@ package com.openclassrooms.mddapi.features.post.dto;
 import java.time.Instant;
 
 public interface PostResponseDto {
-    Long getId();
+    Integer getId();
 
     String getTitle();
 

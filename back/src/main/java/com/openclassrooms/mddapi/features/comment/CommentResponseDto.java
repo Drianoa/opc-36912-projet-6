@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.features.comment;
 
 public interface CommentResponseDto {
-    Long getId();
+    Integer getId();
 
     String getMessage();
 

@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import java.time.Instant;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -33,6 +34,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
+    @CreatedBy
     private User owner;
 
     @CreatedDate
