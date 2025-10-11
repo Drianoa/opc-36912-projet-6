@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.features.auth.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /**
@@ -19,5 +20,6 @@ public record RegisterDto(
                 @Size(min = 3, max = 255, message = "Name must be between {min} and {max} characters")
                 String username,
         @NotBlank(message = "Password is required")
-                @Size(min = 3, message = "Password must be at least {min} characters long")
-                String password) {}
+                @Size(min = 8, message = "Password must be at least {min} characters long")
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$")
+        String password) {}
