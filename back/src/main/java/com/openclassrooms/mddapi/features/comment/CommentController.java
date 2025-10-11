@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.features.comment;
 
 import com.openclassrooms.mddapi.dtos.MessageResponseDto;
+import com.openclassrooms.mddapi.features.comment.dto.CommentRequestDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

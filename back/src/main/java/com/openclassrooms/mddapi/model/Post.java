@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import java.time.Instant;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Setter
@@ -12,6 +14,7 @@ import lombok.*;
 @Table(name = "posts")
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +35,7 @@ public class Post {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
+    @CreatedDate
     @Column(name = "created_at")
     private Instant createdAt;
-
-    @Column(name = "updated_at")
-    private Instant updatedAt;
 }

@@ -10,7 +10,5 @@ import org.springframework.core.convert.converter.Converter;
 public interface RegisterDtoMapper extends Converter<RegisterDto, User> {
 
     @Mapping(ignore = true, target = "id")
-    @Mapping(ignore = true, target = "createdAt")
-    @Mapping(ignore = true, target = "updatedAt")
     User convert(RegisterDto registerDto);
 }

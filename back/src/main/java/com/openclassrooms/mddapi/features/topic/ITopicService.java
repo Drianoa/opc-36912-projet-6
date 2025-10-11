@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.features.topic;
 
+import com.openclassrooms.mddapi.features.topic.dto.UserSubscribedTopicDto;
+import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
 import com.openclassrooms.mddapi.model.Topic;
 import java.util.List;
 

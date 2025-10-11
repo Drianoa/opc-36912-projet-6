@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.features.post;
+package com.openclassrooms.mddapi.features.post.dto;
 
 import java.time.Instant;
 

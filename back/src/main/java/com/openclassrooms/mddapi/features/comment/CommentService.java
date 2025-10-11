@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.features.comment;
 
 import com.openclassrooms.mddapi.features.auth.UserRepository;
+import com.openclassrooms.mddapi.features.comment.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.features.post.PostRepository;
 import com.openclassrooms.mddapi.model.Comment;
 import com.openclassrooms.mddapi.model.User;

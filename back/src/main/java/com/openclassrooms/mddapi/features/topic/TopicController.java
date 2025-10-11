@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.features.topic;
 
+import com.openclassrooms.mddapi.features.topic.dto.UserSubscribedTopicDto;
+import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

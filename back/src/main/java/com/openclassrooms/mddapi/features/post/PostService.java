@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.features.post;
 
 import com.openclassrooms.mddapi.features.auth.UserRepository;
+import com.openclassrooms.mddapi.features.post.dto.PostRequestDto;
+import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import com.openclassrooms.mddapi.features.topic.TopicRepository;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;

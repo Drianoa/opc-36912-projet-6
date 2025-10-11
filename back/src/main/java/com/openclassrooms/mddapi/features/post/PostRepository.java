@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.features.post;
 
+import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import com.openclassrooms.mddapi.model.Post;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
