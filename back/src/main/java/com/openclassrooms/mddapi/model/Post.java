@@ -2,15 +2,20 @@ package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @Entity
+@Builder
 @Table(name = "posts")
+@NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +34,10 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
+    @CreatedBy
     private User owner;
 
+    @CreatedDate
     @Column(name = "created_at")
     private Instant createdAt;
-
-    @Column(name = "updated_at")
-    private Instant updatedAt;
 }

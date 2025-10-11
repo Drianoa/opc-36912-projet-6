@@ -1,7 +1,9 @@
 package com.openclassrooms.mddapi.security;
 
+import com.openclassrooms.mddapi.model.User;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
@@ -12,6 +14,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class TokenService {
 
     private final JwtEncoder jwtEncoder;
@@ -19,18 +22,17 @@ public class TokenService {
     @Value("${spring.application.name}")
     private String projectName;
 
-    public TokenService(JwtEncoder jwtEncoder) {
-        this.jwtEncoder = jwtEncoder;
-    }
-
     public String generateToken(Authentication authentication) {
         var now = Instant.now();
+
+        User user = (User) authentication.getPrincipal();
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer(projectName)
                 .issuedAt(now)
                 .expiresAt(now.plus(1, ChronoUnit.DAYS))
                 .subject(authentication.getName())
+                .claim("userId", user.getId())
                 .build();
 
         var jwtEncoderParameters = JwtEncoderParameters.from(

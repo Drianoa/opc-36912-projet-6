@@ -1,8 +1,6 @@
 package com.openclassrooms.mddapi.security;
 
-import com.openclassrooms.mddapi.repository.UserRepository;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
+import com.openclassrooms.mddapi.features.auth.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,14 +20,17 @@ public class ProjectUserDetailsService implements UserDetailsService {
      * <p>
      * Loads a user by their email address.
      *
-     * @param email the email address of the user to load
+     * @param login the email address or username of the user to load
      * @return a populated {@link UserDetails} object representing the user
      * @throws UsernameNotFoundException if the user with the given email address is not found
      */
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userRepository
-                .findUserByEmail(email)
-                .map(user -> new User(user.getEmail(), user.getPassword(), AuthorityUtils.NO_AUTHORITIES))
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+                .findUserByEmailOrUsername(login, login)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + login));
+    }
+
+    public UserDetails loadUserByUserId(Integer id) {
+        return userRepository.getReferenceById(id);
     }
 }

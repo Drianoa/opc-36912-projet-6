@@ -1,10 +1,11 @@
 package com.openclassrooms.mddapi.security;
 
+import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.model.User;
-import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service for updating user password hash.
@@ -32,13 +33,12 @@ public class PasswordService implements UserDetailsPasswordService {
      * @throws RuntimeException if the user is not found in the repository
      */
     @Override
+    @Transactional
     public UserDetails updatePassword(UserDetails user, String newPassword) {
-        User userEntity = userRepository
-                .findUserByEmail(user.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + user.getUsername()));
-        userEntity.setPassword(newPassword);
-        userRepository.save(userEntity);
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), newPassword, user.getAuthorities());
+        if (user instanceof User userEntity) {
+            userEntity.setPassword(newPassword);
+            return userRepository.save(userEntity);
+        }
+        throw new RuntimeException("User not found: " + user.getUsername());
     }
 }
