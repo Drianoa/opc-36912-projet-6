@@ -21,5 +21,5 @@ public record RegisterDto(
                 String username,
         @NotBlank(message = "Password is required")
                 @Size(min = 8, message = "Password must be at least {min} characters long")
-        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$")
-        String password) {}
+                @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$")
+                String password) {}

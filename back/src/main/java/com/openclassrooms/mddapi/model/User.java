@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
-import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import lombok.EqualsAndHashCode;

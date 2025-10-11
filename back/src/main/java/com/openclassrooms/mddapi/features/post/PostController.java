@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.features.post;
 import com.openclassrooms.mddapi.dtos.MessageResponseDto;
 import com.openclassrooms.mddapi.features.post.dto.PostRequestDto;
 import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
+import com.openclassrooms.mddapi.features.post.dto.SortDirection;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -21,8 +22,8 @@ public class PostController {
     private final IPostService postService;
 
     @GetMapping
-    public Iterable<PostResponseDto> getPostsForCurrentUser() {
-        return postService.getPostsForCurrentUser();
+    public Iterable<PostResponseDto> getPostsForCurrentUser(@RequestParam(defaultValue = "NEWEST") SortDirection sort) {
+        return postService.getPostsForCurrentUser(sort);
     }
 
     @PostMapping

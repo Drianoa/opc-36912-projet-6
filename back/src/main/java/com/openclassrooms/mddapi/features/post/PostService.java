@@ -3,11 +3,13 @@ package com.openclassrooms.mddapi.features.post;
 import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.features.post.dto.PostRequestDto;
 import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
+import com.openclassrooms.mddapi.features.post.dto.SortDirection;
 import com.openclassrooms.mddapi.features.topic.TopicRepository;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +22,15 @@ public class PostService implements IPostService {
     private final TopicRepository topicRepository;
     private final UserRepository userRepository;
 
-    public Iterable<PostResponseDto> getPostsForCurrentUser() {
-        // current user id should be passed here
+    @Override
+    public Iterable<PostResponseDto> getPostsForCurrentUser(SortDirection direction) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        return postRepository.findByPostsForUser(email);
+        Sort sort = direction == SortDirection.NEWEST
+                ? Sort.by(Sort.Direction.DESC, "createdAt")
+                : Sort.by(Sort.Direction.ASC, "createdAt");
+
+        return postRepository.findByPostsForUser(email, sort);
     }
 
     @Override
