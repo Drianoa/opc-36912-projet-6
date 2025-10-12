@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,22 +31,16 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  router = inject(Router)
+  authService = inject(AuthService)
+  formBuilder = inject(FormBuilder)
 
-  ngOnInit(): void {
-    this.initializeForm();
-  }
-
-  private initializeForm(): void {
-    this.registerForm = this.fb.group({
-      name: ['', [Validators.required]],
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
       email: ['', [Validators.required,
         Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z//d]).{8,}$')]],
     });
   }
 
@@ -89,30 +83,4 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // Helper methods for template
-  isFieldInvalid(fieldName: string): boolean {
-    const field = this.registerForm.get(fieldName);
-    return !!(field && field.invalid && field.touched);
-  }
-
-  getFieldError(fieldName: string): string {
-    const field = this.registerForm.get(fieldName);
-    if (field && field.errors && field.touched) {
-      if (field.errors['required']) {
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
-      }
-      if (field.errors['email']) {
-        return 'Please enter a valid email address';
-      }
-      if (field.errors['minlength']) {
-        const requiredLength = field.errors['minlength'].requiredLength;
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${requiredLength} characters long`;
-      }
-      if (field.errors['maxlength']) {
-        const requiredLength = field.errors['maxlength'].requiredLength;
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must not exceed ${requiredLength} characters`;
-      }
-    }
-    return '';
-  }
 }
