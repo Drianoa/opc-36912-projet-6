@@ -1,19 +1,22 @@
 package com.openclassrooms.mddapi.features.topic;
 
 import com.openclassrooms.mddapi.features.auth.UserRepository;
+import com.openclassrooms.mddapi.features.topic.dto.TopicSubscriptionRequestDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserSubscribedTopicDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
 import com.openclassrooms.mddapi.model.Topic;
+import com.openclassrooms.mddapi.model.User;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TopicService implements ITopicService {
 
     private final UserRepository userRepository;
-    private TopicRepository topicRepository;
+    private final TopicRepository topicRepository;
 
     public TopicService(TopicRepository topicRepository, UserRepository userRepository) {
         this.topicRepository = topicRepository;
@@ -25,10 +28,9 @@ public class TopicService implements ITopicService {
         return topicRepository.findAll();
     }
 
+    @Override
     public List<UserSubscribedTopicDto> getTopicsWithSubscriptionStatus() {
-        // current user id should be passed here
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-
         return topicRepository.findTopicsBySubscriptionStatus(email);
     }
 
@@ -38,5 +40,45 @@ public class TopicService implements ITopicService {
         var currentUser = userRepository.findUserByEmail(email);
         var userSet = currentUser.stream().collect(Collectors.toSet());
         return topicRepository.findTopicsByUsers(userSet);
+    }
+
+    @Transactional
+    public Topic getTopicById(Integer topicId) {
+        if (topicRepository.existsById(topicId)) {
+            return topicRepository.getReferenceById(topicId);
+        }
+        throw new RuntimeException("Topic not found");
+    }
+
+    @Override
+    @Transactional
+    public void subscribeToTopic(TopicSubscriptionRequestDto request) {
+        User user =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User currentUser = userRepository.getReferenceById(user.getId());
+        Topic topic = getTopicById(request.topicId());
+
+        // Subscribe user to topic
+        currentUser.getTopics().add(topic);
+
+        // Save both entities
+        userRepository.save(currentUser);
+    }
+
+    @Override
+    @Transactional
+    public void unsubscribeFromTopic(TopicSubscriptionRequestDto request) {
+        User user =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User currentUser = userRepository.getReferenceById(user.getId());
+        Topic topic = getTopicById(request.topicId());
+
+        // Unsubscribe user from topic
+        currentUser.getTopics().remove(topic);
+
+        // Save both entities
+        userRepository.save(currentUser);
     }
 }
