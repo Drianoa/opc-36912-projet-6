@@ -8,7 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService, RegisterRequest } from '../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
+import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
 
 @Component({
   selector: 'app-register',

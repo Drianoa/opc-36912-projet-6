@@ -1,5 +1,4 @@
 import {Component, inject, input} from "@angular/core";
-import {Topic} from "../core/models/Topic";
 import {
   MatCard,
   MatCardActions,
@@ -8,6 +7,7 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
+import {UserTopic} from "../core/interfaces/userTopic.interface";
 
 @Component({
   selector: 'app-topic',
@@ -23,7 +23,7 @@ import {MatButton} from "@angular/material/button";
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent {
-  topic = input<Topic>();
+  topic = input<UserTopic>();
 
   subscribeToTopic() {
 

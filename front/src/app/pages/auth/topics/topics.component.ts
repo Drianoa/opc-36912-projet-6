@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {TopicsService} from "../../core/services/topics.service";
+import {TopicsService} from "../../../core/services/topics.service";
 import {AsyncPipe} from "@angular/common";
-import {TopicComponent} from "../../topic/topic.component";
+import {TopicComponent} from "../../../topic/topic.component";
 
 @Component({
   selector: 'app-topics',
@@ -15,6 +15,6 @@ import {TopicComponent} from "../../topic/topic.component";
 export class TopicsComponent {
 
   topicsService = inject(TopicsService);
-  topics$ = this.topicsService.findAll();
+  topics$ = this.topicsService.getSubscribedTopics();
 
 }

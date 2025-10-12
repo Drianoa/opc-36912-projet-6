@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginRequest } from '../interfaces/loginRequest.interface';
-import { RegisterRequest } from '../interfaces/registerRequest.interface';
 import { LoginResponse } from '../interfaces/loginResponse.interface';
 import { UserResponse } from '../interfaces/userResponse.interface';
 import { SessionService } from './session.service';
+import { RegisterRequest } from "../interfaces/registerRequest.interface";
 
 @Injectable({
   providedIn: 'root'
