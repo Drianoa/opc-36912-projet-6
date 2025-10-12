@@ -9,7 +9,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    @if (true) {
+    @if (!topic().subscribed) {
       <button mat-raised-button color="primary" (click)="subscribeToTopic()">S'abonner</button>
     } @else {
       <button mat-raised-button color="secondary" disabled >Déjà abonné</button>

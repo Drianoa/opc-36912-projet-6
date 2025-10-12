@@ -17,4 +17,7 @@ export class TopicsComponent {
   topicsService = inject(TopicsService);
   topics$ = this.topicsService.getAllTopics();
 
+  reloadTopics() {
+    this.topics$ = this.topicsService.getAllTopics();
+  }
 }

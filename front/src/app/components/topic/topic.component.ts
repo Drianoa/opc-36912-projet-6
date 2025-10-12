@@ -1,4 +1,4 @@
-import {Component, inject, input} from "@angular/core";
+import {Component, inject, input, output} from "@angular/core";
 import {
   MatCard,
   MatCardActions,
@@ -26,10 +26,12 @@ import {UserSubscribedTopic} from "../../core/interfaces/userSubscribedTopic.int
 export class TopicComponent {
   topic = input.required<UserSubscribedTopic>();
   topicService = inject(TopicsService);
+  topicChanged = output();
 
   subscribeToTopic() {
-    this.topicService.subscribe(this.topic().id).subscribe({next: () => {
-      this.topic().subscribed = true;
+    this.topicService.subscribe(this.topic().id).subscribe({
+      next: () => {
+        this.topicChanged.emit();
     }, error: (err) => {
       console.error('Error subscribing to topic', err);
     }
