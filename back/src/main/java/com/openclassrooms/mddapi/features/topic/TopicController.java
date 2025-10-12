@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.features.topic;
 
+import com.openclassrooms.mddapi.dtos.MessageResponseDto;
 import com.openclassrooms.mddapi.features.topic.dto.TopicSubscriptionRequestDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserSubscribedTopicDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
@@ -9,7 +10,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,13 +63,9 @@ public class TopicController {
      * @return ResponseEntity with success message
      */
     @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribeToTopic(@Valid @RequestBody TopicSubscriptionRequestDto request) {
-        try {
-            topicService.subscribeToTopic(request);
-            return ResponseEntity.ok("Successfully subscribed to topic");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public MessageResponseDto subscribeToTopic(@Valid @RequestBody TopicSubscriptionRequestDto request) {
+        topicService.subscribeToTopic(request);
+        return new MessageResponseDto("Successfully subscribed to topic");
     }
 
     /**
@@ -79,12 +75,8 @@ public class TopicController {
      * @return ResponseEntity with success message
      */
     @PostMapping("/unsubscribe")
-    public ResponseEntity<String> unsubscribeFromTopic(@Valid @RequestBody TopicSubscriptionRequestDto request) {
-        try {
-            topicService.unsubscribeFromTopic(request);
-            return ResponseEntity.ok("Successfully unsubscribed from topic");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public MessageResponseDto unsubscribeFromTopic(@Valid @RequestBody TopicSubscriptionRequestDto request) {
+        topicService.unsubscribeFromTopic(request);
+        return new MessageResponseDto("Successfully unsubscribed from topic");
     }
 }
