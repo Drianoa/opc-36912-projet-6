@@ -9,4 +9,5 @@ import jakarta.validation.constraints.NotBlank;
  * @param login The user's email address (must not be blank)
  * @param password The user's password (must not be blank)
  */
-public record LoginRequestDto(@NotBlank String login, @NotBlank String password) {}
+public record LoginRequestDto(
+        @NotBlank String login, @NotBlank String password) {}

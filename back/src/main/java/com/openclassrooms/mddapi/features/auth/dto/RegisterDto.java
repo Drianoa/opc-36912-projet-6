@@ -14,12 +14,14 @@ import jakarta.validation.constraints.Size;
  */
 public record RegisterDto(
         @NotBlank(message = "Email is required")
-                @Size(min = 3, max = 255, message = "Email must be between {min} and {max} characters")
-                String email,
+        @Size(min = 3, max = 255, message = "Email must be between {min} and {max} characters")
+        String email,
+
         @NotBlank(message = "Name is required")
-                @Size(min = 3, max = 255, message = "Name must be between {min} and {max} characters")
-                String username,
+        @Size(min = 3, max = 255, message = "Name must be between {min} and {max} characters")
+        String username,
+
         @NotBlank(message = "Password is required")
-                @Size(min = 8, message = "Password must be at least {min} characters long")
-                @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$")
-                String password) {}
+        @Size(min = 8, message = "Password must be at least {min} characters long")
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$")
+        String password) {}

@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.features.comment;
 import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.features.auth.UserService;
 import com.openclassrooms.mddapi.features.comment.dto.CommentRequestDto;
+import com.openclassrooms.mddapi.features.comment.dto.CommentResponseDto;
 import com.openclassrooms.mddapi.features.post.PostRepository;
 import com.openclassrooms.mddapi.model.Comment;
 import jakarta.validation.Valid;
@@ -16,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
-    private final UserService userService;
 
     public List<CommentResponseDto> getCommentsForPost(Integer postId) {
         return commentRepository.findByPost_IdOrderByCreatedAtAsc(postId);

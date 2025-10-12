@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.features.comment;
+package com.openclassrooms.mddapi.features.comment.dto;
 
 public interface CommentResponseDto {
     Integer getId();
