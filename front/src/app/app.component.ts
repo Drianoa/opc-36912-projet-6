@@ -6,7 +6,7 @@ import {NavigationComponent} from "./core/composants/navigation/navigation.compo
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-  imports: [RouterOutlet, NavigationComponent]
+  imports: [RouterOutlet]
 })
 export class AppComponent {
   title = 'mdd-client';

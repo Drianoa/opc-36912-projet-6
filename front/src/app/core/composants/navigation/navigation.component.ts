@@ -26,7 +26,7 @@ import { RouterOutlet } from "../../../../../node_modules/@angular/router/router
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.HandsetPortrait)
     .pipe(
       map(result => result.matches),
       shareReplay()

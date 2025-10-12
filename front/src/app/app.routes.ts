@@ -4,15 +4,17 @@ import {TopicComponent} from "./topic/topic.component";
 import {TopicsComponent} from "./pages/topics/topics.component";
 import {NavigationComponent} from "./core/composants/navigation/navigation.component";
 import {authGuard} from "./core/auth.guard";
+import {RegisterComponent} from "./pages/register/register.component";
+import {LoginComponent} from "./pages/login/login.component";
 
-// consider a guard combined with canLoad / canActivate route option
-// to manage unauthenticated user to access private routes
+// Routes configuration:
+// - Unauthenticated users see HomeComponent at root path
+// - Authenticated users see NavigationComponent at root path with child routes
 export const routes: Routes = [
   {
     path: '',
     component: NavigationComponent,
-    pathMatch: 'full',
-    canActivate: [authGuard],
+    canMatch: [authGuard],
     children: [
       {
         path: 'topics',
@@ -23,12 +25,18 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full'
   },
-  // {
-  //   path: 'login',
-  // },
-  // {
-  //   path: 'register',
-  // }
+  {
+    path: 'register',
+    component: RegisterComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
+  },
+
 
   ];

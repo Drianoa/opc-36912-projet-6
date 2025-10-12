@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -8,15 +9,15 @@ import { MatButton } from '@angular/material/button';
     imports: [MatButton]
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  subscribe() {
-    alert('Inscrivez-vous pour accéder aux fonctionnalités avancées !');
+  register() {
+    this.router.navigate(['/register']);
   }
 
   login() {
-    alert('Connectez-vous pour continuer !');
+    this.router.navigate(['/login']);
   }
 }
