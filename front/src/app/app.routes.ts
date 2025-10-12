@@ -6,6 +6,7 @@ import {NavigationComponent} from "./core/composants/navigation/navigation.compo
 import {authGuard} from "./core/auth.guard";
 import {RegisterComponent} from "./pages/unauth/register/register.component";
 import {LoginComponent} from "./pages/unauth/login/login.component";
+import {PostsComponent} from "./pages/auth/posts/posts.component";
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
@@ -19,6 +20,10 @@ export const routes: Routes = [
       {
         path: 'topics',
         component: TopicsComponent,
+      },
+      {
+        path: 'posts',
+        component: PostsComponent
       }
     ]
   },

@@ -1,0 +1,19 @@
+<!-- Post preview card using Angular Material 20+ components -->
+<mat-card class="post-preview-card">
+  <!-- Post title -->
+  <mat-card-header>
+    <mat-card-title>{{ post().title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ post().createdAt | date }} {{ post().author }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Post content with max 5 lines and ellipsis -->
+  <mat-card-content>
+    <div class="post-content">
+      <p class="content-text">
+        {{ post().content }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
