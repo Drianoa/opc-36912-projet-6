@@ -7,6 +7,7 @@ import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
 import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -30,15 +31,14 @@ public class TopicService implements ITopicService {
 
     @Override
     public List<UserSubscribedTopicDto> getTopicsWithSubscriptionStatus() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return topicRepository.findTopicsBySubscriptionStatus(email);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return topicRepository.findTopicsBySubscriptionStatus(currentUser);
     }
 
     @Override
     public List<UserTopicDto> getSubscribedTopics() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        var currentUser = userRepository.findUserByEmail(email);
-        var userSet = currentUser.stream().collect(Collectors.toSet());
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var userSet = Set.of(currentUser);
         return topicRepository.findTopicsByUsers(userSet);
     }
 
