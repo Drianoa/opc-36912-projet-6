@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserSubscribedTopic } from '../interfaces/userSubscribedTopic.interface';
 import { UserTopic } from '../interfaces/userTopic.interface';
+import { TopicSubscriptionRequest } from '../interfaces/topicSubscriptionRequest.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,15 @@ export class TopicsService {
 
   public getSubscribedTopics(): Observable<UserTopic[]> {
     return this.http.get<UserTopic[]>(`${this.apiUrl}/subscribed`);
+  }
+
+  public subscribe(topicId: number): Observable<any> {
+    const request: TopicSubscriptionRequest = { topicId };
+    return this.http.post(`${this.apiUrl}/subscribe`, request);
+  }
+
+  public unsubscribe(topicId: number): Observable<any> {
+    const request: TopicSubscriptionRequest = { topicId };
+    return this.http.post(`${this.apiUrl}/unsubscribe`, request);
   }
 }

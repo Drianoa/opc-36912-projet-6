@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/unauth/home/home.component';
-import {TopicComponent} from "./topic/topic.component";
+import {TopicComponent} from "./components/topic/topic.component";
 import {TopicsComponent} from "./pages/auth/topics/topics.component";
 import {NavigationComponent} from "./core/composants/navigation/navigation.component";
 import {authGuard} from "./core/auth.guard";

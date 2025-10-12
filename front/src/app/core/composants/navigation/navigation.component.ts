@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterOutlet } from "../../../../../node_modules/@angular/router/router_module.d-Bx9ArA6K";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -20,8 +20,9 @@ import { RouterOutlet } from "../../../../../node_modules/@angular/router/router
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    AsyncPipe
-]
+    AsyncPipe,
+    RouterOutlet
+  ]
 })
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);

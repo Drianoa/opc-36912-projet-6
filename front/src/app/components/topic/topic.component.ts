@@ -7,7 +7,8 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
-import {UserTopic} from "../core/interfaces/userTopic.interface";
+import {TopicsService} from "../../core/services/topics.service";
+import {UserSubscribedTopic} from "../../core/interfaces/userSubscribedTopic.interface";
 
 @Component({
   selector: 'app-topic',
@@ -23,10 +24,16 @@ import {UserTopic} from "../core/interfaces/userTopic.interface";
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent {
-  topic = input<UserTopic>();
+  topic = input.required<UserSubscribedTopic>();
+  topicService = inject(TopicsService);
 
   subscribeToTopic() {
-
+    this.topicService.subscribe(this.topic().id).subscribe({next: () => {
+      this.topic().subscribed = true;
+    }, error: (err) => {
+      console.error('Error subscribing to topic', err);
+    }
+    });
   }
 
 
