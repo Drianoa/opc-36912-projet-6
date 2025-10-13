@@ -1,4 +1,4 @@
-import {Injectable, inject} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
@@ -40,7 +40,7 @@ export class SessionService {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return payload.userId || null;
-    } catch (e) {
+    } catch {
       return null;
     }
   }

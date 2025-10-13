@@ -1,13 +1,11 @@
-import {Component, signal, computed, ChangeDetectionStrategy, inject, OnInit} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy, inject} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatInput} from "@angular/material/input";
-import {MatIcon} from "@angular/material/icon";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
-import {LoginResponse} from "../../../core/interfaces/loginResponse.interface";
 
 /**
  * Login component for user authentication
@@ -53,11 +51,11 @@ export class LoginComponent {
     const loginRequest = this.form.value as LoginRequest;
 
     this.authService.login(loginRequest).subscribe({
-      next: (_: LoginResponse) => {
+      next: () => {
         this.hasError.set(false);
         this.router.navigate(['/']);
       },
-      error: (_) => {
+      error: () => {
         this.hasError.set(true);
       }
     });

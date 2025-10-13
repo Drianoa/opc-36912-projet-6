@@ -5,8 +5,6 @@ import {MatFormField, MatInput} from "@angular/material/input";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
-import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
-import {LoginResponse} from "../../../core/interfaces/loginResponse.interface";
 import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
 import {SessionService} from "../../../core/services/session.service";
 
@@ -57,11 +55,11 @@ export class MeComponent {
     }
 
     this.authService.updateUser(registerRequest, userId).subscribe({
-      next: (_: LoginResponse) => {
+      next: () => {
         this.hasError.set(false);
         this.router.navigate(['/']);
       },
-      error: (_) => {
+      error: () => {
         this.hasError.set(true);
       }
     });

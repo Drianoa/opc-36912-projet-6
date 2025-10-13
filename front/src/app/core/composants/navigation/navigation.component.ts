@@ -9,8 +9,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {MatMenuItem} from "@angular/material/menu";
-import {AuthService} from "../../services/auth.service";
 import {SessionService} from "../../services/session.service";
 import {PostsService} from "../../services/posts.service";
 
