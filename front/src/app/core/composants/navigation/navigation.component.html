@@ -31,6 +31,9 @@
         </div> -->
       }
     </mat-toolbar>
+    @if (showBackButton()) {
+      <app-back-button/>
+    }
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

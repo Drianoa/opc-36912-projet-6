@@ -11,6 +11,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {SessionService} from "../../services/session.service";
 import {PostsService} from "../../services/posts.service";
+import {BackButtonComponent} from "../../../components/back-button/back-button.component";
 
 @Component({
   selector: 'app-navigation',
@@ -25,7 +26,8 @@ import {PostsService} from "../../services/posts.service";
     AsyncPipe,
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    BackButtonComponent
   ]
 })
 export class NavigationComponent implements OnInit {
@@ -59,4 +61,9 @@ export class NavigationComponent implements OnInit {
     this.sessionService.logOut();
     this.router.navigate(['']);
   };
+
+  showBackButton(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl !== '/' && currentUrl !== '/posts' && currentUrl !== '/topics' && currentUrl !== '/me';
+  }
 }
