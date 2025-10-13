@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .form-field {
   display: flex;
@@ -22,4 +30,93 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-family: inherit;
   background-color: #fff;
   transition: border-color 0.2s ease;
+}
+
+.elements-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+@media (max-width: 600px) {
+  .elements-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+// Component-specific theming using Angular Material 20+ system tokens
+.formular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--mat-sys-surface-container-low);
+
+  mat-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--mat-sys-corner-medium);
+    box-shadow: var(--mat-sys-level1);
+
+    mat-card-header {
+      margin-bottom: 16px;
+
+      mat-card-title {
+        color: var(--mat-sys-primary);
+        font: var(--mat-sys-title-large);
+      }
+    }
+
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      mat-form-field {
+        width: 100%;
+
+        .mat-mdc-form-field-subscript-wrapper {
+          color: var(--mat-sys-error);
+        }
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      button[type="submit"] {
+        height: 48px;
+        border-radius: var(--mat-sys-corner-medium);
+        font: var(--mat-sys-label-large);
+
+        &:disabled {
+          background: var(--mat-sys-surface-container-high);
+          color: var(--mat-sys-on-surface);
+          opacity: 0.6;
+        }
+      }
+
+      .error {
+        color: var(--mat-sys-error);
+        text-align: center;
+        margin: 0;
+        font: var(--mat-sys-body-medium);
+      }
+    }
+  }
+}
+
+// Responsive design using system tokens
+@media (max-width: 480px) {
+  .formular {
+    padding: 16px;
+
+    mat-card {
+      max-width: none;
+    }
+  }
 }

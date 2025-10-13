@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/unauth/home/home.component';
+import {Routes} from '@angular/router';
+import {HomeComponent} from './pages/unauth/home/home.component';
 import {TopicComponent} from "./components/topic/topic.component";
 import {TopicsComponent} from "./pages/auth/topics/topics.component";
 import {NavigationComponent} from "./core/composants/navigation/navigation.component";
@@ -7,6 +7,7 @@ import {authGuard} from "./core/auth.guard";
 import {RegisterComponent} from "./pages/unauth/register/register.component";
 import {LoginComponent} from "./pages/unauth/login/login.component";
 import {PostsComponent} from "./pages/auth/posts/posts.component";
+import {MeComponent} from "./pages/auth/me/me.component";
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
@@ -24,6 +25,10 @@ export const routes: Routes = [
       {
         path: 'posts',
         component: PostsComponent
+      },
+      {
+        path: 'me',
+        component: MeComponent,
       }
     ]
   },

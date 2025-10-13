@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable, inject} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,20 @@ export class SessionService {
 
   public getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  public getUserId(): number | null {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.userId || null;
+    } catch (e) {
+      return null;
+    }
   }
 
   public isAuthenticated(): boolean {

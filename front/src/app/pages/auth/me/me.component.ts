@@ -1,43 +1,42 @@
-import {Component, signal, computed, ChangeDetectionStrategy, inject, OnInit} from '@angular/core';
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component, inject, signal} from '@angular/core';
 import {MatButton} from "@angular/material/button";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatFormField, MatInput} from "@angular/material/input";
-import {MatIcon} from "@angular/material/icon";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
 import {LoginResponse} from "../../../core/interfaces/loginResponse.interface";
+import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
+import {SessionService} from "../../../core/services/session.service";
 
-/**
- * Login component for user authentication
- * Uses Angular signals for reactive state management and modern Angular Material 20+ patterns
- */
 @Component({
-  selector: 'app-login',
+  selector: 'app-me',
   imports: [
+    MatButton,
     MatCard,
+    MatCardContent,
     MatCardHeader,
     MatCardTitle,
-    MatCardContent,
     MatFormField,
-    ReactiveFormsModule,
     MatInput,
-    MatButton
+    ReactiveFormsModule,
+    MatFormField
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './me.component.html',
+  styleUrl: './me.component.scss'
 })
-export class LoginComponent {
+export class MeComponent {
   authService = inject(AuthService)
+  sessionService = inject(SessionService)
   router = inject(Router)
 
   protected readonly hasError = signal(false);
 
   // Form using reactive forms with FormControl
   protected readonly form = new FormGroup({
-    login: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
 
@@ -50,9 +49,14 @@ export class LoginComponent {
       return;
     }
 
-    const loginRequest = this.form.value as LoginRequest;
+    const registerRequest = this.form.value as RegisterRequest;
+    const userId = this.sessionService.getUserId();
+    if (!userId) {
+      this.hasError.set(true);
+      return;
+    }
 
-    this.authService.login(loginRequest).subscribe({
+    this.authService.updateUser(registerRequest, userId).subscribe({
       next: (_: LoginResponse) => {
         this.hasError.set(false);
         this.router.navigate(['/']);

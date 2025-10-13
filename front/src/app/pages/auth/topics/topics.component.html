@@ -1,3 +1,5 @@
-@for (topic of topics$ | async ; track topic.id) {
- <app-topic [topic]="topic" (topicChanged)="reloadTopics()"/>
-}
+<div class="elements-list">
+  @for (topic of topics$ | async; track topic.id) {
+    <app-topic [topic]="topic" (topicChanged)="reloadTopics()"/>
+  }
+</div>
