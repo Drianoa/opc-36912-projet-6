@@ -16,7 +16,9 @@
           <a class="disconnect" (click)="logout()" href="#">Se déconnecter</a>
           <a routerLink="/posts" routerLinkActive="active">Articles</a>
           <a routerLink="/topics" routerLinkActive="active">Themes</a>
-          <a routerLink="/me" routerLinkActive="active">account_circle</a>
+          <button>
+            <mat-icon routerLink="/me" routerLinkActive="active" svgIcon="mdd-user"></mat-icon>
+          </button>
         </nav>
       }
     </mat-toolbar>

@@ -5,7 +5,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
@@ -32,6 +33,8 @@ import {BackButtonComponent} from "../../../components/back-button/back-button.c
 })
 export class NavigationComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
+  private iconRegistry = inject(MatIconRegistry);
+  private sanitizer = inject(DomSanitizer);
   sessionService = inject(SessionService)
   router = inject(Router)
   postsService = inject(PostsService)
@@ -41,6 +44,14 @@ export class NavigationComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+
+  constructor() {
+    // Enregistrer l'icône utilisateur SVG personnalisée
+    this.iconRegistry.addSvgIcon(
+      'mdd-user',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/user.svg')
+    );
+  }
 
 
   ngOnInit(): void {
