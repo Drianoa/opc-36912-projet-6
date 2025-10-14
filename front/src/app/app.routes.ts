@@ -7,6 +7,7 @@ import {RegisterComponent} from "./pages/unauth/register/register.component";
 import {LoginComponent} from "./pages/unauth/login/login.component";
 import {PostsComponent} from "./pages/auth/posts/posts.component";
 import {MeComponent} from "./pages/auth/me/me.component";
+import {NewPostComponent} from "./pages/auth/new-post/new-post.component";
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
@@ -28,6 +29,10 @@ export const routes: Routes = [
       {
         path: 'me',
         component: MeComponent,
+      },
+      {
+        path: 'new-post',
+        component: NewPostComponent,
       }
     ]
   },

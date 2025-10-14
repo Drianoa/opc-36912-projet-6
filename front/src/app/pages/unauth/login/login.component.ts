@@ -52,6 +52,7 @@ export class LoginComponent {
 
     this.authService.login(loginRequest).subscribe({
       next: () => {
+        this.form.reset();
         this.hasError.set(false);
         this.router.navigate(['/']);
       },

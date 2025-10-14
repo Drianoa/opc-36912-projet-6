@@ -2,7 +2,6 @@ import {Component, input, ChangeDetectionStrategy} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   MatCard,
-  MatCardActions,
   MatCardContent,
   MatCardHeader,
   MatCardSubtitle,
@@ -16,7 +15,7 @@ import {PostResponse} from "../../core/interfaces/postResponse.interface";
  */
 @Component({
   selector: 'app-article-preview',
-  imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions],
+  imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent],
   templateUrl: './post-preview.component.html',
   styleUrl: './post-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

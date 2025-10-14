@@ -7,6 +7,10 @@ import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
 import {SessionService} from "../../../core/services/session.service";
+import {MatDivider} from "@angular/material/divider";
+import {TopicsService} from "../../../core/services/topics.service";
+import {TopicComponent} from "../../../components/topic/topic.component";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-me',
@@ -19,7 +23,10 @@ import {SessionService} from "../../../core/services/session.service";
     MatFormField,
     MatInput,
     ReactiveFormsModule,
-    MatFormField
+    MatFormField,
+    MatDivider,
+    TopicComponent,
+    AsyncPipe
   ],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss'
@@ -27,7 +34,10 @@ import {SessionService} from "../../../core/services/session.service";
 export class MeComponent {
   authService = inject(AuthService)
   sessionService = inject(SessionService)
+  topicsService = inject(TopicsService)
   router = inject(Router)
+
+  topics$ = this.topicsService.getSubscribedTopics();
 
   protected readonly hasError = signal(false);
 
@@ -63,5 +73,9 @@ export class MeComponent {
         this.hasError.set(true);
       }
     });
+  }
+
+  reloadTopics() {
+    this.topics$ = this.topicsService.getSubscribedTopics();
   }
 }

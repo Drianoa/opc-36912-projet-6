@@ -1,4 +1,4 @@
-import {Component, inject, input, output} from "@angular/core";
+import {Component, inject, input, output, signal} from "@angular/core";
 import {
   MatCard,
   MatCardActions,
@@ -27,17 +27,26 @@ export class TopicComponent {
   topic = input.required<UserSubscribedTopic>();
   topicService = inject(TopicsService);
   topicChanged = output();
+  canUnsubscribe = input.required<boolean>()
 
   subscribeToTopic() {
     this.topicService.subscribe(this.topic().id).subscribe({
       next: () => {
         this.topicChanged.emit();
-    }, error: (err) => {
-      console.error('Error subscribing to topic', err);
-    }
+      }, error: (err) => {
+        console.error('Error subscribing to topic', err);
+      }
     });
   }
 
 
-
+  unSubscribeToTopic() {
+    this.topicService.unsubscribe(this.topic().id).subscribe({
+      next: () => {
+        this.topicChanged.emit();
+      }, error: (err) => {
+        console.error('Error subscribing to topic', err);
+      }
+    })
+  }
 }
