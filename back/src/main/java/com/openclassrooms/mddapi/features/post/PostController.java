@@ -48,4 +48,9 @@ public class PostController {
         postService.createPost(postRequest);
         return new MessageResponseDto("Post created");
     }
+
+    @GetMapping("/{postId}")
+    public PostResponseDto getPost(@PathVariable String postId) {
+        return postService.getPost(postId);
+    }
 }

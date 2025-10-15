@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.features.post;
 
-import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.features.post.dto.PostRequestDto;
 import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import com.openclassrooms.mddapi.features.post.dto.SortDirection;
@@ -23,7 +22,8 @@ public class PostService implements IPostService {
 
     @Override
     public Iterable<PostResponseDto> getPostsForCurrentUser(SortDirection direction) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Sort sort = direction == SortDirection.NEWEST
                 ? Sort.by(Sort.Direction.DESC, "createdAt")
@@ -47,5 +47,10 @@ public class PostService implements IPostService {
                 .build();
 
         return postRepository.save(post);
+    }
+
+    @Override
+    public PostResponseDto getPost(String postId) {
+        return postRepository.findDtoById(Integer.valueOf(postId));
     }
 }

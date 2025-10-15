@@ -9,4 +9,6 @@ public interface IPostService {
     Iterable<PostResponseDto> getPostsForCurrentUser(SortDirection sortDirection);
 
     Post createPost(PostRequestDto postRequest);
+
+    PostResponseDto getPost(String postId);
 }
