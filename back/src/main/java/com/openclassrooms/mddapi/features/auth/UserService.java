@@ -68,4 +68,33 @@ public class UserService {
 
         return userRepository.save(userEntity);
     }
+
+    /**
+     * Updates an existing user with the provided registration details.
+     *
+     * @param registerDto the DTO containing user update information
+     * @return the updated user entity
+     * @throws RuntimeException if a user with the given email already exists
+     */
+    @Transactional
+    public User update(@Valid RegisterDto registerDto, Integer userId) {
+
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + userId));
+
+        var logins = List.of(registerDto.email(), registerDto.username());
+
+        userRepository
+                .findUserByUsernameIsInOrEmailIsInAndIdIsNot(logins, logins, userId)
+                .ifPresent(u -> {
+                    throw new RuntimeException("User already exists: " + String.join(",", logins));
+                });
+
+        user.setEmail(registerDto.email());
+        user.setUsername(registerDto.username());
+        user.setPassword(encoder.encode(registerDto.password()));
+
+        return userRepository.save(user);
+    }
 }

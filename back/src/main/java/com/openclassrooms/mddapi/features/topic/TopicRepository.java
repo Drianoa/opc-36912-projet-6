@@ -23,11 +23,11 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
             COUNT(u.id) AS userCount
         FROM Topic t
         LEFT JOIN t.users u
-        WITH u.email = :email
+        WITH u = :user
         GROUP BY t.id, t.name, t.description
         ORDER BY userCount ASC , t.name ASC
         """)
-    List<UserSubscribedTopicDto> findTopicsBySubscriptionStatus(String email);
+    List<UserSubscribedTopicDto> findTopicsBySubscriptionStatus(User user);
 
     List<UserTopicDto> findTopicsByUsers(Set<User> users);
 }

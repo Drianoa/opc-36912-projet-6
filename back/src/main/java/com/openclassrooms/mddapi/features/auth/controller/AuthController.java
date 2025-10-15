@@ -82,4 +82,24 @@ public class AuthController {
         LoginResponseDto response = new LoginResponseDto(jwt);
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * Endpoint for updating an existing user.
+     * <p>
+     * Updates an existing user with the provided email, username, and password.
+     *
+     * @param registerDto the registration request containing the email, username, and password
+     * @return a response containing the JWT token generated for the user
+     * @throws IllegalArgumentException if the email is already taken
+     *
+     */
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<LoginResponseDto> update(
+            @Valid @RequestBody RegisterDto registerDto, @PathVariable String userId) {
+        User userEntity = userService.update(registerDto, Integer.valueOf(userId));
+        // Authentifie l'utilisateur tout juste mis à jour dans spring security
+        String jwt = authenticationService.authenticate(userEntity.getEmail(), registerDto.password());
+        LoginResponseDto response = new LoginResponseDto(jwt);
+        return ResponseEntity.ok(response);
+    }
 }
