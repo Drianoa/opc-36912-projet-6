@@ -10,7 +10,7 @@ import {MatIcon} from "@angular/material/icon";
     MatIcon
   ],
   templateUrl: './back-button.component.html',
-  styleUrl: './back-button.component.scss'
+  styleUrl: './back-button.component.css'
 })
 export class BackButtonComponent {
   router = inject(Router)

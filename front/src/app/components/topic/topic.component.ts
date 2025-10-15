@@ -21,7 +21,7 @@ import {UserSubscribedTopic} from "../../core/interfaces/userSubscribedTopic.int
     MatButton,
     MatCardActions
   ],
-  styleUrls: ['./topic.component.scss']
+  styleUrls: ['./topic.component.css']
 })
 export class TopicComponent {
   topic = input.required<UserSubscribedTopic>();

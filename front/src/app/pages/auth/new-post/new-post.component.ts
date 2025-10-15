@@ -26,7 +26,7 @@ import {Router} from "@angular/router";
     AsyncPipe
   ],
   templateUrl: './new-post.component.html',
-  styleUrl: './new-post.component.scss'
+  styleUrl: './new-post.component.css'
 })
 export class NewPostComponent {
   topicsService = inject(TopicsService)

@@ -17,7 +17,7 @@ import {BackButtonComponent} from "../../../components/back-button/back-button.c
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss',
+  styleUrl: './navigation.component.css',
   imports: [
     MatToolbarModule,
     MatButtonModule,
