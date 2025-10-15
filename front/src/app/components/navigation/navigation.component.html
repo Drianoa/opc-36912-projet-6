@@ -4,7 +4,7 @@
       <img src="/assets/logo_p6.png" alt="logo" class="h-16"/>
     </div>
   </div>
-  <div class="flex items-center space-x-6 not-md:hidden">
+  <div class="flex items-center space-x-6 not-md:hidden pr-4">
     <a href="#" class="text-red-700 font-bold" (click)="logout()">Se déconnecter</a>
     <a routerLink="/posts" routerLinkActive="text-purple-700" class="text-gray-700">Articles</a>
     <a routerLink="/topics" routerLinkActive="text-purple-700" class="text-gray-700">Thèmes</a>
@@ -41,12 +41,64 @@
     <button
       type="button"
       aria-label="Toggle sidenav"
+      (click)="open()"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
            class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
     </button>
+  </div>
+</nav>
+<!-- Backdrop overlay -->
+@if (isOpen()) {
+  <div
+    id="drawer-backdrop"
+    class="fixed inset-0 z-10 bg-black opacity-25 transition-opacity duration-200"
+    (click)="close()"
+  ></div>
+}
+
+<!-- Drawer -->
+<nav
+  class="fixed top-0 right-0 z-20 w-64 h-full transition-all duration-500 transform -translate-x-full
+  bg-white shadow-lg peer-checked:translate-x-0 border"
+  [class]="isOpen() ? 'translate-x-0' : 'translate-x-full'">
+  <div class="flex flex-col h-full p-4 pt-16 space-y-4 items-end">
+    <a href="#" class="text-red-700 font-bold " (click)="logout()">Se déconnecter</a>
+    <a routerLink="/posts" routerLinkActive="text-purple-700" class="text-gray-700">Articles</a>
+    <a routerLink="/topics" routerLinkActive="text-purple-700" class="text-gray-700">Thèmes</a>
+
+    <div routerLinkActive="text-purple-400"
+         class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mt-auto">
+      <button routerLink="/me" routerLinkActive="text-purple-700">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="48" height="48" role="img"
+             aria-label="Icône profil">
+          <!-- Rond gris en arrière-plan -->
+          <circle cx="60" cy="60" r="56" fill="#D9D9D9" stroke="currentColor" stroke-width="4"/>
+
+          <!-- Lignes du bonhomme (devant) -->
+          <!-- Tête (anneau) -->
+          <circle cx="60" cy="34" r="14" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+
+          <!-- Épaules/torse -->
+          <!-- Le chemin crée une arche arrondie pour simuler les épaules -->
+          <path d="M30 90
+           v-12
+           a20 20 0 0 1 20 -20
+           h20
+           a20 20 0 0 1 20 20
+           v12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </nav>
 @if (showBackButton()) {
