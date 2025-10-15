@@ -1,12 +1,12 @@
 import {Component, inject} from '@angular/core';
-import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [MatButton]
+  imports: [NgOptimizedImage]
 })
 export class HomeComponent {
   router = inject(Router);
