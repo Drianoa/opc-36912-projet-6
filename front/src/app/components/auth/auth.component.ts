@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
-import {BackButtonComponent} from "../../../components/back-button/back-button.component";
-import {NgOptimizedImage} from "@angular/common";
+import {BackButtonComponent} from "../back-button/back-button.component";
 
 @Component({
   selector: 'app-auth',
