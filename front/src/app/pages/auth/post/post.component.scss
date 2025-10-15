@@ -1,0 +1,86 @@
+/* Styles pour le composant d'affichage d'un post spécifique */
+.post-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Styles pour l'état de chargement */
+.loading-container, .error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loading-card, .error-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.loading-content, .error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.loading-icon, .error-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}
+
+.loading-icon {
+  color: var(--mat-sys-primary);
+}
+
+.error-icon {
+  color: var(--mat-sys-error);
+}
+
+.error-content p {
+  margin: 0;
+  color: var(--mat-sys-error);
+}
+
+/* Styles pour le post */
+.post-card {
+  margin-bottom: 20px;
+}
+
+.post-content {
+  margin: 16px 0;
+}
+
+.content-text {
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Styles pour les actions */
+mat-card-actions {
+  padding: 16px;
+  gap: 8px;
+}
+
+mat-card-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .post-page {
+    padding: 16px;
+  }
+
+  .post-card {
+    margin-bottom: 16px;
+  }
+}
