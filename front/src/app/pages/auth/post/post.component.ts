@@ -23,7 +23,7 @@ import {MatButton} from "@angular/material/button";
     MatCardSubtitle
   ],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.scss',
+  styleUrl: './post.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent implements OnInit {

@@ -18,7 +18,7 @@ import {RouterLink} from "@angular/router";
   selector: 'app-article-preview',
   imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, RouterLink],
   templateUrl: './post-preview.component.html',
-  styleUrl: './post-preview.component.scss',
+  styleUrl: './post-preview.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostPreviewComponent {

@@ -16,7 +16,7 @@ import {MatIcon} from "@angular/material/icon";
     MatIcon,
   ],
   templateUrl: './posts.component.html',
-  styleUrl: './posts.component.scss'
+  styleUrl: './posts.component.css'
 })
 export class PostsComponent {
   postService = inject(PostsService);

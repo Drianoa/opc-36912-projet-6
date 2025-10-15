@@ -29,7 +29,7 @@ import {AsyncPipe} from "@angular/common";
     AsyncPipe
   ],
   templateUrl: './me.component.html',
-  styleUrl: './me.component.scss'
+  styleUrl: './me.component.css'
 })
 export class MeComponent {
   authService = inject(AuthService)

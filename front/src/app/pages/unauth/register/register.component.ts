@@ -24,7 +24,7 @@ import {RegisterRequest} from "../../../core/interfaces/registerRequest.interfac
     MatIconModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;

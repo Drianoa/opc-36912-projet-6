@@ -24,7 +24,7 @@ import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
     MatButton
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrl: './login.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {

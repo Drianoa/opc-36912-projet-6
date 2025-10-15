@@ -10,7 +10,7 @@ import {TopicComponent} from "../../../components/topic/topic.component";
     TopicComponent
   ],
   templateUrl: './topics.component.html',
-  styleUrl: './topics.component.scss'
+  styleUrl: './topics.component.css'
 })
 export class TopicsComponent {
 
