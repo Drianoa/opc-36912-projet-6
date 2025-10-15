@@ -9,7 +9,7 @@ import {PostsComponent} from "./pages/auth/posts/posts.component";
 import {MeComponent} from "./pages/auth/me/me.component";
 import {NewPostComponent} from "./pages/auth/new-post/new-post.component";
 import {PostComponent} from "./pages/auth/post/post.component";
-import {AuthComponent} from "./pages/unauth/auth/auth.component";
+import {AuthComponent} from "./components/auth/auth.component";
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
