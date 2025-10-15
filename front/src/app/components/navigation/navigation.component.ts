@@ -10,9 +10,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {SessionService} from "../../services/session.service";
-import {PostsService} from "../../services/posts.service";
-import {BackButtonComponent} from "../../../components/back-button/back-button.component";
+import {SessionService} from "../../core/services/session.service";
+import {PostsService} from "../../core/services/posts.service";
+import {BackButtonComponent} from "../back-button/back-button.component";
 
 @Component({
   selector: 'app-navigation',

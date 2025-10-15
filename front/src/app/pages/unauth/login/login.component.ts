@@ -1,8 +1,5 @@
 import {Component, signal, ChangeDetectionStrategy, inject} from '@angular/core';
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatButton} from "@angular/material/button";
-import {MatFormField, MatInput} from "@angular/material/input";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
@@ -14,14 +11,7 @@ import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
 @Component({
   selector: 'app-login',
   imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
     ReactiveFormsModule,
-    MatInput,
-    MatButton
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
