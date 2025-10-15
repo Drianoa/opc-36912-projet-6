@@ -1,5 +1,5 @@
 <!-- Post preview card using Angular Material 20+ components -->
-<mat-card class="post-preview-card">
+<mat-card class="post-preview-card" routerLink="/post/{{post().id}}">
   <!-- Post title -->
   <mat-card-header>
     <mat-card-title>{{ post().title }}</mat-card-title>

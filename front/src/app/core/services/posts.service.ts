@@ -25,4 +25,8 @@ export class PostsService {
   public createPost(postRequest: PostRequest): Observable<MessageResponse> {
     return this.http.post<MessageResponse>(this.apiUrl, postRequest);
   }
+
+  public getPostById(id: number): Observable<PostResponse> {
+    return this.http.get<PostResponse>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -8,6 +8,7 @@ import {
   MatCardTitle
 } from '@angular/material/card';
 import {PostResponse} from "../../core/interfaces/postResponse.interface";
+import {RouterLink} from "@angular/router";
 
 /**
  * Composant de prévisualisation d'article utilisant les signaux Angular 20+
@@ -15,7 +16,7 @@ import {PostResponse} from "../../core/interfaces/postResponse.interface";
  */
 @Component({
   selector: 'app-article-preview',
-  imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent],
+  imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, RouterLink],
   templateUrl: './post-preview.component.html',
   styleUrl: './post-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
