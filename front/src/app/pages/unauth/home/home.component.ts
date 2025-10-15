@@ -12,10 +12,10 @@ export class HomeComponent {
   router = inject(Router);
 
   register() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/auth/register']);
   }
 
   login() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 }
