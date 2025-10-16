@@ -1,13 +1,9 @@
 import {Component, inject, signal} from '@angular/core';
-import {MatButton} from "@angular/material/button";
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
-import {MatFormField, MatInput} from "@angular/material/input";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
 import {SessionService} from "../../../core/services/session.service";
-import {MatDivider} from "@angular/material/divider";
 import {TopicsService} from "../../../core/services/topics.service";
 import {TopicComponent} from "../../../components/topic/topic.component";
 import {AsyncPipe} from "@angular/common";
@@ -15,16 +11,7 @@ import {AsyncPipe} from "@angular/common";
 @Component({
   selector: 'app-me',
   imports: [
-    MatButton,
-    MatCard,
-    MatCardContent,
-    MatCardHeader,
-    MatCardTitle,
-    MatFormField,
-    MatInput,
     ReactiveFormsModule,
-    MatFormField,
-    MatDivider,
     TopicComponent,
     AsyncPipe
   ],
