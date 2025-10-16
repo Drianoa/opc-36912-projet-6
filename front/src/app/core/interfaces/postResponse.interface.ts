@@ -3,7 +3,8 @@ export interface PostResponse {
   title: string;
   content: string;
   topicId: number;
-  author: string;
+  owner: {
+    username: string;
+  };
   createdAt: string;
-  updatedAt: string;
 }
