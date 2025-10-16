@@ -1,12 +1,10 @@
 import {Component, signal, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommonModule} from '@angular/common';
-
 import {PostsService} from "../../../core/services/posts.service";
 import {PostResponse} from "../../../core/interfaces/postResponse.interface";
-import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
-import {MatIcon} from "@angular/material/icon";
-import {MatButton} from "@angular/material/button";
+import { BackButtonComponent } from "src/app/components/back-button/back-button.component";
+
 
 /**
  * Composant d'affichage d'un post spécifique utilisant les signaux Angular 20+
@@ -16,12 +14,8 @@ import {MatButton} from "@angular/material/button";
   selector: 'app-post',
   imports: [
     CommonModule,
-    MatCard,
-    MatCardContent,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle
-  ],
+    BackButtonComponent
+],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -53,7 +47,7 @@ export class PostComponent implements OnInit {
     }
 
     this.postsService.getPostById(id).subscribe({
-      next: (postData: any) => {
+      next: (postData: PostResponse) => {
         this.post.set(postData);
       },
       error: (err) => {

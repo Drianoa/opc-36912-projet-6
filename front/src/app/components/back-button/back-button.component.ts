@@ -11,6 +11,6 @@ export class BackButtonComponent {
   router = inject(Router)
 
   back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/posts']);
   }
 }
