@@ -1,5 +1,5 @@
 <div class="bg-gray-100 p-4">
-  <h2 class="font-bold">{{ topic().name }}</h2>
+  <h2 class="font-bold pb-4">{{ topic().name }}</h2>
   <p class="mb-4 line-clamp-3">
     Description: {{ topic().description }}
   </p>
@@ -9,7 +9,7 @@
     } @else if (!topic().subscribed) {
       <button class="call-to-action" (click)="subscribeToTopic()">S'abonner</button>
     } @else {
-      <button>Déjà abonné</button>
+      <button class="inactive-btn">Déjà abonné</button>
     }
   </div>
 </div>
