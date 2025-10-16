@@ -1,33 +1,36 @@
-<h1 class="text-2xl text-center mb-6">Profil utilisateur</h1>
+<h1 class="big-title">Profil utilisateur</h1>
 <form class="flex flex-col justify-center items-center" [formGroup]="form" (ngSubmit)="submit()">
   <div class="mb-6">
     <input
-      class="custom-input"
+      class="custom-input ring-2 ring-purple-500"
       placeholder="Username"
       formControlName="username"
       type="text">
   </div>
   <div class="mb-6">
     <input
-      class="custom-input"
+      class="custom-input ring-2 ring-purple-500"
       placeholder="E-mail"
       formControlName="email"
       type="email">
   </div>
   <div class="mb-6">
     <input
-      class="custom-input"
+      class="custom-input ring-2 ring-purple-500"
       type="password"
       placeholder="Mot de passe"
       formControlName="password">
   </div>
-  <button class="call-to-action" type="submit" [disabled]="!form.valid">Sauvegarde</button>
+  <button class="call-to-action" type="submit" [disabled]="!form.valid">Sauvegarder</button>
 
   @if (hasError()) {
     <p class="bg-red-500 px-4 text-white">Un erreur c'est produite</p>
   }
 </form>
-<div>
+<hr/>
+<h1 class="big-title">Abonnements</h1>
+
+<div class="md:grid-cols-2 p-4 grid gap-4">
   @for (topic of topics$ | async; track topic.id) {
     <app-topic [topic]="topic" (topicChanged)="reloadTopics()" [canUnsubscribe]="true"/>
   }

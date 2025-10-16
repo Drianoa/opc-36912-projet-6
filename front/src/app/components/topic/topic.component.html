@@ -1,20 +1,16 @@
-<mat-card appearance="outlined" class="themes">
-  <mat-card-header>
-    <mat-card-title>{{ topic().name }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Description: {{ topic().description }}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
+<div class="bg-gray-100 p-4">
+  <h2 class="font-bold">{{ topic().name }}</h2>
+  <p class="mb-4 line-clamp-3">
+    Description: {{ topic().description }}
+  </p>
+  <div class="flex justify-center">
     @if (canUnsubscribe()) {
-      <button mat-raised-button color="primary" (click)="unSubscribeToTopic()">Se désabonner</button>
+      <button class="call-to-action" (click)="unSubscribeToTopic()">Se désabonner</button>
     } @else if (!topic().subscribed) {
-      <button mat-raised-button color="primary" (click)="subscribeToTopic()">S'abonner</button>
+      <button class="call-to-action" (click)="subscribeToTopic()">S'abonner</button>
     } @else {
-      <button mat-raised-button color="secondary" disabled>Déjà abonné</button>
+      <button>Déjà abonné</button>
     }
-  </mat-card-actions>
-</mat-card>
+  </div>
+</div>
 
