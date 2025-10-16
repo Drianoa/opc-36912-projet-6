@@ -2,7 +2,6 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {SessionService} from "../../core/services/session.service";
 import {PostsService} from "../../core/services/posts.service";
-import {BackButtonComponent} from "../back-button/back-button.component";
 
 @Component({
   selector: 'app-navigation',
@@ -11,8 +10,7 @@ import {BackButtonComponent} from "../back-button/back-button.component";
   imports: [
     RouterOutlet,
     RouterLink,
-    RouterLinkActive,
-    BackButtonComponent
+    RouterLinkActive
   ]
 })
 export class NavigationComponent implements OnInit {
@@ -40,11 +38,6 @@ export class NavigationComponent implements OnInit {
     this.sessionService.logOut();
     this.router.navigate(['']);
   };
-
-  showBackButton(): boolean {
-    const currentUrl = this.router.url;
-    return currentUrl !== '/' && currentUrl !== '/posts' && currentUrl !== '/topics' && currentUrl !== '/me';
-  }
 
   open() {
     this.isOpen.set(true);

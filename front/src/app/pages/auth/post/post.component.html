@@ -1,24 +1,21 @@
-<div class="post-page">
-  <!-- Affichage du post -->
-  @if (post()) {
-    <mat-card class="post-card">
-      <!-- En-tête du post -->
-      <mat-card-header>
-        <mat-card-title>{{ post()?.title }}</mat-card-title>
-        <mat-card-subtitle>
-          Publié le {{ post()?.createdAt | date:'dd/MM/yyyy à HH:mm' }}
-          par {{ post()?.owner?.username }}
-        </mat-card-subtitle>
-      </mat-card-header>
+<!-- En-tête du post -->
+<div class="flex">
+  <app-back-button />
+  <div class="p-2 border-b  mr-6">
+    <h2 class="font-semibold pb-4">{{ post()?.title }}</h2>
+    <div class="mb-4 grid grid-cols-3">
+      <p>Le {{ post()?.createdAt | date : "dd/MM/yyyy à HH:mm" }}</p>
+      <p>
+        {{ post()?.owner?.username }}
+      </p>
+      <p>
+        {{ post()?.topic?.name }}
+      </p>
+    </div>
 
-      <!-- Contenu du post -->
-      <mat-card-content>
-        <div class="post-content">
-          <p class="content-text">
-            {{ post()?.content }}
-          </p>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  }
+    <!-- Contenu du post -->
+    <p class="mb-4 line-clamp-5">
+      {{ post()?.content }}
+    </p>
+  </div>
 </div>
