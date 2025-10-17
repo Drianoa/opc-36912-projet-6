@@ -1,30 +1,19 @@
 import {Component, inject, signal} from '@angular/core';
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
-import {MatFormField, MatInput} from "@angular/material/input";
-import {MatOption, MatSelect} from "@angular/material/select";
 import {TopicsService} from "../../../core/services/topics.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {PostRequest} from "../../../core/interfaces/postRequest.interface";
 import {PostsService} from "../../../core/services/posts.service";
-import {MatButton} from "@angular/material/button";
 import {AsyncPipe} from "@angular/common";
 import {Router} from "@angular/router";
+import { BackButtonComponent } from "src/app/components/back-button/back-button.component";
 
 @Component({
   selector: 'app-new-post',
   imports: [
-    MatCard,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardContent,
-    MatFormField,
     ReactiveFormsModule,
-    MatSelect,
-    MatOption,
-    MatInput,
-    MatButton,
-    AsyncPipe
-  ],
+    AsyncPipe,
+    BackButtonComponent
+],
   templateUrl: './new-post.component.html',
   styleUrl: './new-post.component.css'
 })
