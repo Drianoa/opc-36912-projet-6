@@ -1,27 +1,12 @@
-import {Component, inject, input, output, signal} from "@angular/core";
-import {
-  MatCard,
-  MatCardActions,
-  MatCardContent,
-  MatCardHeader,
-  MatCardTitle
-} from "@angular/material/card";
-import {MatButton} from "@angular/material/button";
+import {Component, inject, input, output} from "@angular/core";
 import {TopicsService} from "../../core/services/topics.service";
 import {UserSubscribedTopic} from "../../core/interfaces/userSubscribedTopic.interface";
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MatCardActions
-  ],
-  styleUrls: ['./topic.component.scss']
+  imports: [],
+  styleUrls: ['./topic.component.css']
 })
 export class TopicComponent {
   topic = input.required<UserSubscribedTopic>();

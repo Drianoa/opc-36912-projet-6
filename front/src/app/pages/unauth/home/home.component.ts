@@ -1,21 +1,21 @@
 import {Component, inject} from '@angular/core';
-import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  imports: [MatButton]
+  styleUrls: ['./home.component.css'],
+  imports: [NgOptimizedImage]
 })
 export class HomeComponent {
   router = inject(Router);
 
   register() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/auth/register']);
   }
 
   login() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 }

@@ -1,19 +1,16 @@
-<!-- Post preview card using Angular Material 20+ components -->
-<mat-card class="post-preview-card" routerLink="/post/{{post().id}}">
+<div class="bg-gray-100 p-4 rounded-lg" routerLink="/post/{{post().id}}">
   <!-- Post title -->
-  <mat-card-header>
-    <mat-card-title>{{ post().title }}</mat-card-title>
-    <mat-card-subtitle>
-      {{ post().createdAt | date }} {{ post().author }}
-    </mat-card-subtitle>
-  </mat-card-header>
+  <h2 class="font-bold pb-4">{{ post().title }}</h2>
+  <div class="mb-4 grid grid-cols-2">
+    <p >
+      {{ post().createdAt | date }}
+    </p>
+    <p>
+      {{ post().owner.username }}
+    </p>
+  </div>
 
-  <!-- Post content with max 5 lines and ellipsis -->
-  <mat-card-content>
-    <div class="post-content">
-      <p class="content-text">
+     <p class="mb-4 line-clamp-5">
         {{ post().content }}
       </p>
-    </div>
-  </mat-card-content>
-</mat-card>
+</div>

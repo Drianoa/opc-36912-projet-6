@@ -1,12 +1,5 @@
 import {Component, input, ChangeDetectionStrategy} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle
-} from '@angular/material/card';
 import {PostResponse} from "../../core/interfaces/postResponse.interface";
 import {RouterLink} from "@angular/router";
 
@@ -16,9 +9,9 @@ import {RouterLink} from "@angular/router";
  */
 @Component({
   selector: 'app-article-preview',
-  imports: [CommonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './post-preview.component.html',
-  styleUrl: './post-preview.component.scss',
+  styleUrl: './post-preview.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostPreviewComponent {

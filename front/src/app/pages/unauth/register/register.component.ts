@@ -1,14 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../../core/services/auth.service';
+import {Component, inject} from '@angular/core';
+import {FormGroup, Validators, ReactiveFormsModule, FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {AuthService} from '../../../core/services/auth.service';
 import {RegisterRequest} from "../../../core/interfaces/registerRequest.interface";
 
 @Component({
@@ -16,54 +10,40 @@ import {RegisterRequest} from "../../../core/interfaces/registerRequest.interfac
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatIconModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
+export class RegisterComponent {
   isLoading = false;
   errorMessage = '';
 
   router = inject(Router)
   authService = inject(AuthService)
-  formBuilder = inject(FormBuilder)
 
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required,Validators.email]],
-      password: ['', [Validators.required,
-        Validators.minLength(8),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z//d]).{8,}$')
-      ]
-      ],
-    });
-  }
+  protected readonly registerForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z//d]).{8,}$')])
+  });
+
 
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.isLoading = true;
       this.errorMessage = '';
 
-      const registerData: RegisterRequest = this.registerForm.value;
+      const registerData: RegisterRequest = this.registerForm.value as RegisterRequest;
 
       this.authService.register(registerData).subscribe({
-        next: (response) => {
+        next: () => {
           this.isLoading = false;
-          console.log('Registration successful', response);
           // Redirect to home page or login page after successful registration
           this.router.navigate(['/']);
         },
         error: (error) => {
           this.isLoading = false;
-          console.error('Registration error', error);
 
           if (error.status === 400) {
             this.errorMessage = 'Email already exists or invalid data provided';
