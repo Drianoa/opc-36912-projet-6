@@ -2,7 +2,6 @@ import {Routes} from '@angular/router';
 import {HomeComponent} from './pages/unauth/home/home.component';
 import {TopicsComponent} from "./pages/auth/topics/topics.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
-import {authGuard} from "./core/auth.guard";
 import {RegisterComponent} from "./pages/unauth/register/register.component";
 import {LoginComponent} from "./pages/unauth/login/login.component";
 import {PostsComponent} from "./pages/auth/posts/posts.component";
@@ -10,6 +9,8 @@ import {MeComponent} from "./pages/auth/me/me.component";
 import {NewPostComponent} from "./pages/auth/new-post/new-post.component";
 import {PostComponent} from "./pages/auth/post/post.component";
 import {AuthComponent} from "./components/auth/auth.component";
+import { hasTopicsGuard } from './core/guards/hasTopics.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
@@ -21,12 +22,23 @@ export const routes: Routes = [
     canMatch: [authGuard],
     children: [
       {
+        canMatch: [hasTopicsGuard],
+        path: '',
+        redirectTo: 'posts',
+        pathMatch: 'full'
+      },
+      {
+        path: '',
+        redirectTo: 'topics',
+        pathMatch: 'full'
+      },
+      {
         path: 'topics',
         component: TopicsComponent,
       },
       {
         path: 'posts',
-        component: PostsComponent
+        component: PostsComponent,
       },
       {
         path: 'me',
