@@ -1,10 +1,11 @@
-<app-back-button/>
-<h1 class="big-title">Créer un nouvel article</h1>
-<form
-  class="flex flex-col justify-center items-center gap-4"
-  [formGroup]="form"
-  (ngSubmit)="submit()"
->
+<div class="h-full min-h-[calc(100vh-5rem)] flex flex-col">
+  <app-back-button/>
+  <h1 class="big-title">Créer un nouvel article</h1>
+  <form
+    class="flex flex-col justify-center items-center gap-4 flex-1 w-full"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
   <select
     class="custom-input ring-2 ring-purple-500"
     placeholder="Sélectionner un thème"
@@ -20,7 +21,7 @@
     formControlName="title"
   />
   <textarea
-    class="custom-input ring-2 ring-purple-500 min-h-56"
+    class="custom-input ring-2 ring-purple-500 flex-1 min-h-36 resize-none"
     placeholder="Contenu de l'article"
     formControlName="content"
   ></textarea>
@@ -28,7 +29,8 @@
     Sauvegarde
   </button>
 
-  @if (hasError()) {
-  <p class="bg-red-500 px-4 text-white">Un erreur c'est produite</p>
-  }
-</form>
+    @if (hasError()) {
+    <p class="bg-red-500 px-4 text-white">Un erreur c'est produite</p>
+    }
+  </form>
+</div>
