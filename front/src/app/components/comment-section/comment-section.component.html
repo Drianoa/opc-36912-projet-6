@@ -1,0 +1,4 @@
+@for (com of comments$ | async; track com.id) {
+  <app-comment [comment]="com" />
+}
+<app-comment-writer [postId]="postId()" (newComment)="loadComments()" />
