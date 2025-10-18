@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content>
-    <mat-toolbar >
+    <mat-toolbar>
       <img src="assets/logo_p6.png" alt="Logo" class="logo">
       @if (isHandset$ | async) {
         <button
@@ -13,40 +13,34 @@
         </button>
       } @else {
         <nav class="right-header-menu">
-          <a  mat-menu-item class="disconnect" href="#">Se déconnecter</a>
-          <a  mat-menu-item href="#">Articles</a>
-          <a  mat-menu-item class="active" href="#">Themes</a>
-          <mat-icon mat-menu-item>account_circle</mat-icon>
+          <a class="disconnect" (click)="logout()" href="#">Se déconnecter</a>
+          <a routerLink="/posts" routerLinkActive="active">Articles</a>
+          <a routerLink="/topics" routerLinkActive="active">Themes</a>
+          <button>
+            <mat-icon routerLink="/me" routerLinkActive="active" svgIcon="mdd-user"></mat-icon>
+          </button>
         </nav>
-        <!-- <div class="right-header-menu">
-           <a class="disconnect" href="#">Se déconnecter</a>
-          <a class="link" href="#">Articles</a>
-          <a  class="link active" href="#">Themes</a>
-          <mat-toolbar>
-            <a  mat-list-item class="disconnect" href="#">Se déconnecter</a>
-          </mat-toolbar>
-          <a  mat-list-item href="#">Articles</a>
-          <a  mat-list-item [activated]="true" href="#">Themes</a>
-          <mat-icon mat-list-item>account_circle</mat-icon>
-        </div> -->
       }
     </mat-toolbar>
-    <!-- <router-outlet></router-outlet> -->
+    @if (showBackButton()) {
+      <app-back-button/>
+    }
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-              [attr.role]="'navigation'"
-              [mode]="'over'"
-              position="end"
+               [attr.role]="'navigation'"
+               [mode]="'over'"
+               position="end"
   >
     <mat-toolbar>
-      <a  mat-list-item class="disconnect" href="#">Se déconnecter</a>
+      <a mat-list-item class="disconnect" href="#">Se déconnecter</a>
     </mat-toolbar>
     <mat-nav-list>
-      <a  mat-list-item href="#">Articles</a>
-      <a  mat-list-item [activated]="true" href="#">Themes</a>
+      <a mat-list-item href="#">Articles</a>
+      <a mat-list-item [activated]="true" href="#">Themes</a>
       <button mat-list-item (click)="drawer.toggle()">
-        <mat-icon >account_circle</mat-icon>
+        <mat-icon>account_circle</mat-icon>
       </button>
     </mat-nav-list>
   </mat-sidenav>

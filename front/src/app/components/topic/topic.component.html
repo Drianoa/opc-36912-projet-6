@@ -1,0 +1,20 @@
+<mat-card appearance="outlined" class="themes">
+  <mat-card-header>
+    <mat-card-title>{{ topic().name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Description: {{ topic().description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    @if (canUnsubscribe()) {
+      <button mat-raised-button color="primary" (click)="unSubscribeToTopic()">Se désabonner</button>
+    } @else if (!topic().subscribed) {
+      <button mat-raised-button color="primary" (click)="subscribeToTopic()">S'abonner</button>
+    } @else {
+      <button mat-raised-button color="secondary" disabled>Déjà abonné</button>
+    }
+  </mat-card-actions>
+</mat-card>
+

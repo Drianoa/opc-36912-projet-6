@@ -1,0 +1,21 @@
+<div class="posts-page"> <!-- -->
+  <div class="posts-header">
+    <button mat-raised-button color="primary" routerLink="/new-post">
+      Créer un article
+    </button>
+    <button mat-button (click)="toogleSort()">Tri par :
+      <mat-icon iconPositionEnd>
+        @if (sort() === 'NEWEST') {
+          arrow_upward
+        } @else {
+          arrow_downward
+        }
+      </mat-icon>
+    </button>
+  </div>
+  <div class="elements-list">
+    @for (post of posts$ | async; track post.id) {
+      <app-article-preview [post]="post"/>
+    }
+  </div>
+</div>

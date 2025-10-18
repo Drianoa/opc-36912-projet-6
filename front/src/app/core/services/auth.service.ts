@@ -1,13 +1,55 @@
-import { Injectable } from '@angular/core';
+import {Injectable, inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+import {LoginRequest} from '../interfaces/loginRequest.interface';
+import {LoginResponse} from '../interfaces/loginResponse.interface';
+import {UserResponse} from '../interfaces/userResponse.interface';
+import {SessionService} from './session.service';
+import {RegisterRequest} from "../interfaces/registerRequest.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private sessionService = inject(SessionService);
+  private apiUrl = 'api/auth';
 
-  isAuthenticated(): boolean {
-    console.log('AuthService isAuthenticated');
-    // Implement your authentication logic here
-    return false; // or false based on the authentication status
+  public register(registerRequest: RegisterRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/register`, registerRequest)
+      .pipe(
+        tap(response => {
+          if (response.token) {
+            this.sessionService.logIn(response.token);
+          }
+        })
+      );
   }
+
+  public login(loginRequest: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginRequest)
+      .pipe(
+        tap(response => {
+          if (response.token) {
+            this.sessionService.logIn(response.token);
+          }
+        })
+      );
+  }
+
+  public updateUser(data: RegisterRequest, id: number): Observable<LoginResponse> {
+    return this.http.put<LoginResponse>(`${this.apiUrl}/update/${id}`, data)
+      .pipe(
+        tap(response => {
+          if (response.token) {
+            this.sessionService.logIn(response.token);
+          }
+        })
+      );
+  }
+
+  public me(): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/me`);
+  }
+  
 }

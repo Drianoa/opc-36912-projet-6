@@ -1,34 +1,59 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import {TopicComponent} from "./topic/topic.component";
-import {TopicsComponent} from "./pages/topics/topics.component";
+import {Routes} from '@angular/router';
+import {HomeComponent} from './pages/unauth/home/home.component';
+import {TopicsComponent} from "./pages/auth/topics/topics.component";
 import {NavigationComponent} from "./core/composants/navigation/navigation.component";
 import {authGuard} from "./core/auth.guard";
+import {RegisterComponent} from "./pages/unauth/register/register.component";
+import {LoginComponent} from "./pages/unauth/login/login.component";
+import {PostsComponent} from "./pages/auth/posts/posts.component";
+import {MeComponent} from "./pages/auth/me/me.component";
+import {NewPostComponent} from "./pages/auth/new-post/new-post.component";
+import {PostComponent} from "./pages/auth/post/post.component";
 
-// consider a guard combined with canLoad / canActivate route option
-// to manage unauthenticated user to access private routes
+// Routes configuration:
+// - Unauthenticated users see HomeComponent at root path
+// - Authenticated users see NavigationComponent at root path with child routes
 export const routes: Routes = [
   {
     path: '',
     component: NavigationComponent,
-    pathMatch: 'full',
-    canActivate: [authGuard],
+    canMatch: [authGuard],
     children: [
       {
         path: 'topics',
         component: TopicsComponent,
+      },
+      {
+        path: 'posts',
+        component: PostsComponent
+      },
+      {
+        path: 'me',
+        component: MeComponent,
+      },
+      {
+        path: 'new-post',
+        component: NewPostComponent,
+      },
+      {
+        path: 'post/:id',
+        component: PostComponent,
       }
     ]
   },
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full'
   },
-  // {
-  //   path: 'login',
-  // },
-  // {
-  //   path: 'register',
-  // }
-
-  ];
+  {
+    path: 'register',
+    component: RegisterComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
+  },
+];

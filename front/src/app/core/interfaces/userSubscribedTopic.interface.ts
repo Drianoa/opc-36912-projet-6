@@ -1,9 +1,6 @@
-export interface Topic {
+export interface UserSubscribedTopic {
   id: number;
   name: string;
   description: string;
-}
-
-export interface UserTopic extends Topic {
   subscribed: boolean;
 }

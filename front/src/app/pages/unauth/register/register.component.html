@@ -1,0 +1,49 @@
+<div class="register-container">
+  <h1>Inscription</h1>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-content">
+        <!-- Name Field -->
+        <div class="form-field">
+          <label>Nom d'utilisateur</label>
+          <input
+            type="text"
+            formControlName="username"
+          />
+        </div>
+
+        <!-- Email Field -->
+
+        <div class="form-field">
+          <label>Adresse e-mail</label>
+          <input
+            type="email"
+            formControlName="email"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-field">
+          <label>Mot de passe</label>
+          <input
+            type="password"
+            formControlName="password"
+          />
+        </div>
+        <!-- Error Message -->
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading || registerForm.invalid"
+          class="submit-button"
+        >
+          <span *ngIf="!isLoading">S'inscrire</span>
+        </button>
+
+      </form>
+</div>
