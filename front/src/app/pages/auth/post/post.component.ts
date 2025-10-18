@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {PostsService} from "../../../core/services/posts.service";
 import {PostResponse} from "../../../core/interfaces/postResponse.interface";
 import { BackButtonComponent } from "src/app/components/back-button/back-button.component";
+import { CommentSectionComponent } from "src/app/components/comment-section/comment-section.component";
 
 
 /**
@@ -14,7 +15,8 @@ import { BackButtonComponent } from "src/app/components/back-button/back-button.
   selector: 'app-post',
   imports: [
     CommonModule,
-    BackButtonComponent
+    BackButtonComponent,
+    CommentSectionComponent
 ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
@@ -26,6 +28,9 @@ export class PostComponent implements OnInit {
 
   /** Signal pour stocker les données du post */
   protected readonly post = signal<PostResponse | null>(null);
+
+  /** ID du post actuel pour les commentaires */
+  protected readonly currentPostId = signal<number | null>(null);
 
   ngOnInit(): void {
     this.loadPost();
@@ -49,6 +54,7 @@ export class PostComponent implements OnInit {
     this.postsService.getPostById(id).subscribe({
       next: (postData: PostResponse) => {
         this.post.set(postData);
+        this.currentPostId.set(id);
       },
       error: (err) => {
         console.error('Erreur lors du chargement du post:', err);

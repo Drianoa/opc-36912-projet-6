@@ -1,21 +1,30 @@
 <!-- En-tête du post -->
-<div class="flex">
-  <app-back-button />
-  <div class="p-2 border-b  mr-6">
-    <h2 class="font-semibold pb-4">{{ post()?.title }}</h2>
-    <div class="mb-4 grid grid-cols-3">
-      <p>Le {{ post()?.createdAt | date : "dd/MM/yyyy à HH:mm" }}</p>
-      <p>
-        {{ post()?.owner?.username }}
-      </p>
-      <p>
-        {{ post()?.topic?.name }}
+ <div class="md:m-6 not-md:m-2">
+  <div class="flex  not-md:flex-col">
+    <app-back-button />
+    <div class="md:p-2 border-b w-full">
+      <h2 class="font-semibold pb-4">{{ post()?.title }}</h2>
+      <div class="mb-4 grid grid-cols-3">
+        <span>{{ post()?.createdAt | date : "dd/MM/yyyy" }}</span>
+        <span>
+          {{ post()?.owner?.username }}
+        </span>
+        <span>
+          {{ post()?.topic?.name }}
+        </span>
+      </div>
+
+      <!-- Contenu du post -->
+      <p class="mb-4">
+        {{ post()?.content }}
       </p>
     </div>
-
-    <!-- Contenu du post -->
-    <p class="mb-4 line-clamp-5">
-      {{ post()?.content }}
-    </p>
   </div>
-</div>
+  <!-- Section des commentaires -->
+  <div class="md:ml-10 mt-4 flex flex-col">
+    <span class="mb-5">Commentaires</span>
+    @if (currentPostId()) {
+      <app-comment-section [postId]="currentPostId()!" />
+    }
+  </div>
+ </div>
