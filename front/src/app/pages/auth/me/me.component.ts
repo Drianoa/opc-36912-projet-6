@@ -1,4 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
@@ -7,6 +7,8 @@ import {SessionService} from "../../../core/services/session.service";
 import {TopicsService} from "../../../core/services/topics.service";
 import {TopicComponent} from "../../../components/topic/topic.component";
 import {AsyncPipe} from "@angular/common";
+import { UserService } from 'src/app/core/services/user.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-me',
@@ -18,9 +20,10 @@ import {AsyncPipe} from "@angular/common";
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
-export class MeComponent {
+export class MeComponent implements OnInit {
   authService = inject(AuthService)
   sessionService = inject(SessionService)
+  userService = inject(UserService)
   topicsService = inject(TopicsService)
   router = inject(Router)
 
@@ -34,6 +37,18 @@ export class MeComponent {
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
+
+
+  ngOnInit(): void {
+    this.userService.getMe().pipe(
+      tap(me => {
+        this.form.patchValue({
+          email: me.email,
+          username: me.username
+        });
+      })
+    ).subscribe();
+  }
 
   /**
    * Handles form submission

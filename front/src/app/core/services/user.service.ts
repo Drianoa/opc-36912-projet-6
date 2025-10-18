@@ -13,4 +13,8 @@ export class UserService {
   public getById(id: number): Observable<UserResponse> {
     return this.http.get<UserResponse>(`${this.apiUrl}/${id}`);
   }
+
+  public getMe(): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/me`)
+  }
 }
