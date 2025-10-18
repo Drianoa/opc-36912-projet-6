@@ -6,7 +6,6 @@ import {LoginRequest} from "../../../core/interfaces/loginRequest.interface";
 
 /**
  * Login component for user authentication
- * Uses Angular signals for reactive state management and modern Angular Material 20+ patterns
  */
 @Component({
   selector: 'app-login',
