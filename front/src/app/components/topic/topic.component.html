@@ -1,0 +1,16 @@
+<div class="bg-gray-100 p-4  rounded-lg h-ful">
+  <h2 class="font-bold pb-4">{{ topic().name }}</h2>
+  <p class="mb-4 line-clamp-3">
+    Description: {{ topic().description }}
+  </p>
+  <div class="flex justify-center">
+    @if (canUnsubscribe()) {
+      <button class="call-to-action" (click)="unSubscribeToTopic()">Se désabonner</button>
+    } @else if (!topic().subscribed) {
+      <button class="call-to-action" (click)="subscribeToTopic()">S'abonner</button>
+    } @else {
+      <button class="inactive-btn">Déjà abonné</button>
+    }
+  </div>
+</div>
+
