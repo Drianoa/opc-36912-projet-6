@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.features.comment;
 import com.openclassrooms.mddapi.features.comment.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.features.comment.dto.CommentResponseDto;
 import com.openclassrooms.mddapi.features.post.PostRepository;
-import com.openclassrooms.mddapi.model.Comment;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

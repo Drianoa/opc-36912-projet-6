@@ -1,11 +1,10 @@
 package com.openclassrooms.mddapi.features.topic;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.auth.UserRepository;
 import com.openclassrooms.mddapi.features.topic.dto.TopicSubscriptionRequestDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserSubscribedTopicDto;
 import com.openclassrooms.mddapi.features.topic.dto.UserTopicDto;
-import com.openclassrooms.mddapi.model.Topic;
-import com.openclassrooms.mddapi.model.User;
 import java.util.List;
 import java.util.Set;
 import org.springframework.security.core.context.SecurityContextHolder;

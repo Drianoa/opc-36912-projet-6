@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.security;
 
-import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.features.auth.User;
 import java.util.Optional;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.features.auth;
 
-import com.openclassrooms.mddapi.model.User;
 import java.util.Collection;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

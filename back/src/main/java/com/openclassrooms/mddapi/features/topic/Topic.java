@@ -1,5 +1,6 @@
-package com.openclassrooms.mddapi.model;
+package com.openclassrooms.mddapi.features.topic;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import jakarta.persistence.*;
 import java.util.Set;
 import lombok.EqualsAndHashCode;

@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.features.auth;
 
 import com.openclassrooms.mddapi.features.auth.dto.RegisterDto;
-import com.openclassrooms.mddapi.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import java.util.List;

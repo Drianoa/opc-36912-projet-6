@@ -1,14 +1,15 @@
 package com.openclassrooms.mddapi.features.auth.controller;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.auth.UserService;
 import com.openclassrooms.mddapi.features.auth.dto.UserResponseDto;
-import com.openclassrooms.mddapi.model.User;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,14 @@ public class UserController {
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<UserResponseDto> getById(@PathVariable Integer id) {
         User userEntity = userService.findById(id);
+        UserResponseDto responseDto = conversionService.convert(userEntity, UserResponseDto.class);
+        return ResponseEntity.ok(responseDto);
+    }
+
+    @GetMapping("me")
+    @SecurityRequirement(name = "bearerAuth")
+    public ResponseEntity<UserResponseDto> getMe(@AuthenticationPrincipal User user) {
+        User userEntity = userService.findById(user.getId());
         UserResponseDto responseDto = conversionService.convert(userEntity, UserResponseDto.class);
         return ResponseEntity.ok(responseDto);
     }

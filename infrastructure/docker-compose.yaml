@@ -10,4 +10,9 @@ services:
     # load scripts on container start
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/init.sql:ro
-
+   
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+      --init-connect='SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci'
