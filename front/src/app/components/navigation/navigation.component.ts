@@ -1,6 +1,5 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
-  NavigationEnd,
   Router,
   RouterLink,
   RouterLinkActive,
@@ -8,8 +7,6 @@ import {
 } from '@angular/router';
 import { SessionService } from '../../core/services/session.service';
 import { PostsService } from '../../core/services/posts.service';
-import { filter, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
