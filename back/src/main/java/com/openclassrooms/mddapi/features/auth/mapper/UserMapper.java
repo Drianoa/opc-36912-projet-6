@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.features.auth.mapper;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.auth.dto.UserResponseDto;
-import com.openclassrooms.mddapi.model.User;
 import org.mapstruct.Mapper;
 import org.springframework.core.convert.converter.Converter;
 

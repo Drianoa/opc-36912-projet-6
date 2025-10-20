@@ -1,6 +1,6 @@
 package com.openclassrooms.mddapi.configuration;
 
-import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.security.MddAuditorAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.AuditorAware;

@@ -1,5 +1,6 @@
-package com.openclassrooms.mddapi.model;
+package com.openclassrooms.mddapi.features.auth;
 
+import com.openclassrooms.mddapi.features.topic.Topic;
 import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.LinkedHashSet;

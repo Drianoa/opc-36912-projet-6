@@ -1,5 +1,7 @@
-package com.openclassrooms.mddapi.model;
+package com.openclassrooms.mddapi.features.comment;
 
+import com.openclassrooms.mddapi.features.auth.User;
+import com.openclassrooms.mddapi.features.post.Post;
 import jakarta.persistence.*;
 import java.time.Instant;
 import lombok.*;
@@ -9,33 +11,30 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode(of = "id")
 @Entity
-@Builder
-@Table(name = "posts")
+@Table(name = "comments")
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "title")
-    private String title;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "topic_id", nullable = false)
-    private Topic topic;
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
-    @Column(name = "content", length = 2000)
-    private String content;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     @CreatedBy
-    private User owner;
+    private User user;
+
+    @Column(name = "message", nullable = false, length = 2000)
+    private String message;
 
     @CreatedDate
     @Column(name = "created_at")

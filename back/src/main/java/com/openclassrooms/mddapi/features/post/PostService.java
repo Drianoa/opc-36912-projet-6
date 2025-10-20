@@ -1,12 +1,11 @@
 package com.openclassrooms.mddapi.features.post;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.post.dto.PostRequestDto;
 import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import com.openclassrooms.mddapi.features.post.dto.SortDirection;
+import com.openclassrooms.mddapi.features.topic.Topic;
 import com.openclassrooms.mddapi.features.topic.TopicRepository;
-import com.openclassrooms.mddapi.model.Post;
-import com.openclassrooms.mddapi.model.Topic;
-import com.openclassrooms.mddapi.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;

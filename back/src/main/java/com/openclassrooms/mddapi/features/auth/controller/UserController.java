@@ -1,8 +1,8 @@
 package com.openclassrooms.mddapi.features.auth.controller;
 
+import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.auth.UserService;
 import com.openclassrooms.mddapi.features.auth.dto.UserResponseDto;
-import com.openclassrooms.mddapi.model.User;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
