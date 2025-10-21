@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.features.post;
 import com.openclassrooms.mddapi.features.auth.User;
 import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +27,5 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
         JOIN FETCH p.owner o
         WHERE p.id = :id
         """)
-    PostResponseDto findDtoById(Integer id);
+    Optional<PostResponseDto> findDtoById(Integer id);
 }
