@@ -7,8 +7,8 @@ import {SessionService} from "../../../core/services/session.service";
 import {TopicsService} from "../../../core/services/topics.service";
 import {TopicComponent} from "../../../components/topic/topic.component";
 import {AsyncPipe} from "@angular/common";
-import { UserService } from 'src/app/core/services/user.service';
-import { tap } from 'rxjs';
+import {UserService} from 'src/app/core/services/user.service';
+import {tap} from 'rxjs';
 
 @Component({
   selector: 'app-me',
@@ -35,7 +35,8 @@ export class MeComponent implements OnInit {
   protected readonly form = new FormGroup({
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z//d]).{8,}$')])
   });
 
 

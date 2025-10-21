@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.features.post.dto.PostResponseDto;
 import com.openclassrooms.mddapi.features.post.dto.SortDirection;
 import com.openclassrooms.mddapi.features.topic.Topic;
 import com.openclassrooms.mddapi.features.topic.TopicRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,6 +51,8 @@ public class PostService implements IPostService {
 
     @Override
     public PostResponseDto getPost(String postId) {
-        return postRepository.findDtoById(Integer.valueOf(postId));
+        return postRepository
+                .findDtoById(Integer.valueOf(postId))
+                .orElseThrow(() -> new EntityNotFoundException("Post not found"));
     }
 }
