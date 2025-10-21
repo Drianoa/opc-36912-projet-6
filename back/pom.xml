@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.openclassrooms</groupId>
     <artifactId>mdd-api</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1-RELEASE</version>
     <name>mdd-api</name>
-    <description>Monde de dev API</description>
+    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>
         <spotless.version>3.0.0</spotless.version>

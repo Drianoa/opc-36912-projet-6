@@ -1,8 +1,9 @@
 # Monde de Dév MDD
 
-| Auteur | Version |   Commentaire    |
-|:------:|:-------:|:----------------:|
-| MERLY  |   1.0   | Première version |
+| Auteur | Version |    Commentaire    |
+|:------:|:-------:|:-----------------:|
+| MERLY  |  1.0.0  | Première version  |
+| MERLY  |  1.0.1  | Gestion d'erreurs |
 
 ## Présentation
 
