@@ -5,7 +5,7 @@ import {PostRequest} from "../../../core/interfaces/postRequest.interface";
 import {PostsService} from "../../../core/services/posts.service";
 import {AsyncPipe} from "@angular/common";
 import {Router} from "@angular/router";
-import { BackButtonComponent } from "src/app/components/back-button/back-button.component";
+import {BackButtonComponent} from "src/app/components/back-button/back-button.component";
 
 @Component({
   selector: 'app-new-post',
@@ -13,7 +13,7 @@ import { BackButtonComponent } from "src/app/components/back-button/back-button.
     ReactiveFormsModule,
     AsyncPipe,
     BackButtonComponent
-],
+  ],
   templateUrl: './new-post.component.html',
   styleUrl: './new-post.component.css'
 })
@@ -28,7 +28,7 @@ export class NewPostComponent {
   protected readonly form = new FormGroup({
     title: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required, Validators.maxLength(2000)]),
-    topicId: new FormControl(null, [Validators.required])
+    topicId: new FormControl('', [Validators.required])
   });
 
   submit(): void {
@@ -39,7 +39,7 @@ export class NewPostComponent {
     const formValue = this.form.value as {
       title: string;
       content: string;
-      topicId: string | null;
+      topicId: string;
     };
 
     const postRequest: PostRequest = {

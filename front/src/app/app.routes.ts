@@ -11,6 +11,8 @@ import {PostComponent} from "./pages/auth/post/post.component";
 import {AuthComponent} from "./components/auth/auth.component";
 import { hasTopicsGuard } from './core/guards/hasTopics.guard';
 import { authGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 // Routes configuration:
 // - Unauthenticated users see HomeComponent at root path
@@ -35,22 +37,27 @@ export const routes: Routes = [
       {
         path: 'topics',
         component: TopicsComponent,
+        pathMatch: 'full'
       },
       {
         path: 'posts',
         component: PostsComponent,
+        pathMatch: 'full'
       },
       {
         path: 'me',
         component: MeComponent,
+        pathMatch: 'full'
       },
       {
         path: 'new-post',
         component: NewPostComponent,
+        pathMatch: 'full'
       },
       {
         path: 'post/:id',
         component: PostComponent,
+        pathMatch: 'full'
       }
     ]
   },
@@ -73,5 +80,12 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
     ]
+  },{
+    path: 'error',
+    component: ErrorComponent,
+    pathMatch: 'full'
+  },{
+    path: '**',
+    component: NotFoundComponent
   }
 ];
